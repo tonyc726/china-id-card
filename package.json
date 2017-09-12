@@ -2,7 +2,7 @@
   "name": "china-id-card",
   "version": "0.0.0",
   "description": "China citizen identification number",
-  "repository": "https://github.com/tonyc726/GB11643",
+  "repository": "https://github.com/tonyc726/china-id-card",
   "author": "tonyc726 <zhujf620@gmail.com>",
   "license": "MIT",
   "keywords": [

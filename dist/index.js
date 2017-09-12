@@ -1,4 +1,4 @@
-/* GB11643 v0.0.0 - tonyc726 <zhujf620@gmail.com> */
+/* china-id-card v0.0.0 - tonyc726 <zhujf620@gmail.com> */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
