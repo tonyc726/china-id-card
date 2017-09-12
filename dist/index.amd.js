@@ -1,7 +1,5 @@
 /* GB11643 v0.0.0 - tonyc726 <zhujf620@gmail.com> */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
+define(['exports'], function (exports) { 'use strict';
 
 var asyncGenerator = function () {
   function AwaitValue(value) {
@@ -236,3 +234,7 @@ var index = (function (IDCardNumber) {
 exports.tranformEighteen = tranformEighteen;
 exports.getCheckCode = getCheckCode;
 exports['default'] = index;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+});
