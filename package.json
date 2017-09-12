@@ -23,7 +23,7 @@
     "rollup:amd-min": "NODE_ENV=production TARGET=bowser rollup -c",
     "build": "npm-run-all rollup:*",
     "lint": "eslint ./src",
-    "test": "cross-env NODE_ENV=test jest ./src",
+    "test": "cross-env NODE_ENV=test jest ./test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {

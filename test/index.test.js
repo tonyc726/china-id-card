@@ -1,4 +1,4 @@
-import IDCard, { tranformEighteen, getCheckCode } from './index';
+import IDCard, { tranformEighteen, getCheckCode } from '../dist/index';
 
 test('tranformEighteen', () => {
   expect(tranformEighteen('310000810227632')).toBe('310000198102276323');
