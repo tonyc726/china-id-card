@@ -6,6 +6,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/tonyc726/china-id-card)
 
 ## 如何使用
+[DEMO](https://tonyc726.github.io/china-id-card)
 
 ### ES6 Modules
 ```
