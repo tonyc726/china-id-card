@@ -1,0 +1,9 @@
+# https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
+docs/
+test/
+.editorconfig
+.eslintignore
+.eslintrc
+.travis.yml
+.yarnclean
+rollup.config.js
