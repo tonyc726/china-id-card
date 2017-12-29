@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>China-id-card - AMD</title>
+  <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
   <link href="https://cdn.bootcss.com/bulma/0.5.1/css/bulma.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
   <script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
-  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
 </head>
 </head>
 
@@ -21,28 +22,42 @@
           <div class="field">
             <label class="label">身份证号：</label>
             <div class="control">
-              <input class="input" type="text" placeholder="ID Card Number" id="text">
+              <input class="input" type="text" placeholder="ID Card Number" id="text" disabled>
             </div>
             <p class="help" id="tip" style="display:none"></p>
           </div>
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-primary" id="check">检查</button>
+              <button class="button is-primary" id="check" disabled>检查</button>
             </div>
             <div class="control">
-              <button class="button is-warning" id="reset">重置</button>
+              <button class="button is-warning" id="reset" disabled>重置</button>
             </div>
             <div class="control">
-              <button class="button " id="random">随机号码</button>
+              <button class="button " id="random" disabled>随机号码</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <script>NProgress && NProgress.start();</script>
 
   <script>
-    require(['../dist/index.amd.js'], function (IDCard) {
+    requirejs.config({
+      //To get timely, correct error triggers in IE, force a define/shim exports check.
+      enforceDefine: true,
+      paths: {
+        jquery: [
+          'https://unpkg.com/jquery/dist/jquery.slim.min'
+        ],
+        chinaIdCard: [
+          'https://unpkg.com/china-id-card/dist/index.amd.min'
+        ]
+      }
+    });
+    require(['jquery', 'chinaIdCard'], function ($, IDCard) {
+      NProgress.done();
       var $text = $('#text'),
         $tip = $('#tip');
       var testList = [
@@ -52,6 +67,8 @@
         '530629198901284967',
         '31000019850412412X',
       ];
+
+      $text.prop('disabled', null);
 
       function toggleTip(type, message) {
         $text.removeClass('is-success is-danger');
@@ -79,17 +96,18 @@
             isVerified ? '身份证通过验证' : '身份证未能通过验证'
           );
         }
-      });
+      }).prop('disabled', null);
 
       $('#reset').on('click', function () {
         $text.val(null);
         toggleTip(null, null);
-      });
+      }).prop('disabled', null);
 
       $('#random').on('click', function () {
         toggleTip(null, null);
         $text.val(testList[Math.floor(Math.random() * (testList.length))]);
-      });
+      }).prop('disabled', null);
+      NProgress.remove();
     });
   </script>
 </body>
