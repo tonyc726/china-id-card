@@ -24,7 +24,7 @@
     "build": "npm-run-all rollup:*",
     "lint": "eslint ./src",
     "test": "cross-env NODE_ENV=test jest ./test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "npx semantic-release"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
