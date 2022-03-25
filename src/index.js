@@ -59,7 +59,7 @@ const checkBirthday = (IDCard = '') => {
   const diffYear =
     new Date().getFullYear() -
     new Date(
-      `${birthdayMatch[2]}/${birthdayMatch[3]}/${birthdayMatch[4]}`
+      `${birthdayMatch[2]}-${birthdayMatch[3]}-${birthdayMatch[4]}`
     ).getFullYear();
   // 年龄在0-130之间，目前中国没有超过130岁的
   return diffYear >= 0 && diffYear <= 130;
