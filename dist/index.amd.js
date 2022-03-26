@@ -19,6 +19,9 @@ define(['exports'], function (exports) { 'use strict';
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
     return Constructor;
   }
 
@@ -49,7 +52,7 @@ define(['exports'], function (exports) { 'use strict';
       return false;
     }
 
-    var diffYear = new Date().getFullYear() - new Date("".concat(birthdayMatch[2], "/").concat(birthdayMatch[3], "/").concat(birthdayMatch[4])).getFullYear();
+    var diffYear = new Date().getFullYear() - new Date("".concat(birthdayMatch[2], "-").concat(birthdayMatch[3], "-").concat(birthdayMatch[4])).getFullYear();
     return diffYear >= 0 && diffYear <= 130;
   };
 
