@@ -60,7 +60,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^3.1.0",
     "jest": "^27.0.6",
-    "lint-staged": "^12.3.7",
+    "lint-staged": "^13.2.1",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.19.1",
     "rimraf": "^2.7.1",
@@ -68,7 +68,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^5.0.2",
-    "semantic-release": "^19.0.2"
+    "semantic-release": "^21.0.1"
   },
   "husky": {
     "hooks": {
