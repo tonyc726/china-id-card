@@ -48,7 +48,7 @@
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^30.0.5",
     "commitizen": "^4.2.4",
     "cross-env": "^5.2.1",
     "cz-conventional-changelog": "^2.1.0",
