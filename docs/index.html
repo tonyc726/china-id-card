@@ -1,114 +1,966 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>China-id-card - AMD</title>
-  <link href="https://cdn.jsdelivr.net/npm/nprogress/nprogress.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/nprogress/nprogress.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/requirejs/require.min.js"></script>
-</head>
+  <title>China ID Card Validator</title>
+  <style>
+    :root {
+      --primary: #0070f3;
+      --primary-dark: #0060df;
+      --primary-light: #e0eaff;
+      --success: #50e3c2;
+      --danger: #f43f5e;
+      --warning: #f5a623;
+      --text: #000;
+      --text-secondary: #666;
+      --text-muted: #888;
+      --bg: #fafafa;
+      --bg-card: #fff;
+      --border: #eaeaea;
+      --border-light: #f5f5f5;
+      --code-bg: #1e1e1e;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--primary) 0%, #9333ea 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .header-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 500;
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+
+    .nav-section {
+      margin-bottom: 2rem;
+    }
+
+    .nav-title {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      padding-left: 0.75rem;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: all 0.15s ease;
+      margin-bottom: 0.25rem;
+    }
+
+    .nav-link:hover {
+      background: var(--border-light);
+      color: var(--text);
+    }
+
+    .nav-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Main Content */
+    .main {
+      min-width: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+
+    /* Section Card */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .card-badge {
+      font-size: 0.6875rem;
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .card-badge.green {
+      background: rgba(80, 227, 194, 0.15);
+      color: #0d9488;
+    }
+
+    .card-badge.blue {
+      background: rgba(0, 112, 243, 0.1);
+      color: var(--primary);
+    }
+
+    .card-badge.orange {
+      background: rgba(245, 166, 35, 0.15);
+      color: #d97706;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    /* Demo Section */
+    .demo {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .demo-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .input {
+      flex: 1;
+      padding: 0.625rem 0.875rem;
+      font-size: 0.875rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      outline: none;
+      transition: all 0.15s ease;
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    }
+
+    .input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+    }
+
+    .input.result {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      flex: none;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .input.result.success {
+      border-color: var(--success);
+      color: #0d9488;
+      background: rgba(80, 227, 194, 0.08);
+    }
+
+    .input.result.error {
+      border-color: var(--danger);
+      color: var(--danger);
+      background: rgba(244, 63, 94, 0.08);
+    }
+
+    .btn {
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border-light);
+      border-color: var(--text-muted);
+    }
+
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .info-card {
+      background: var(--bg);
+      padding: 0.875rem;
+      border-radius: var(--radius);
+    }
+
+    .info-label {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--code-bg);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-block::before {
+      content: '';
+      position: absolute;
+      top: 0.75rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.375rem;
+    }
+
+    .code-block code {
+      color: #d4d4d4;
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      display: block;
+    }
+
+    .code-keyword {
+      color: #569cd6;
+    }
+
+    .code-string {
+      color: #ce9178;
+    }
+
+    .code-comment {
+      color: #6a9955;
+    }
+
+    .code-function {
+      color: #dcdcaa;
+    }
+
+    .code-property {
+      color: #9cdcfe;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.875rem 1.25rem;
+      border-radius: var(--radius);
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(1rem) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .toast-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    .toast-error {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+
+      .sidebar {
+        position: static;
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .nav-section {
+        margin-bottom: 0;
+        margin-right: 1rem;
+      }
+
+      .nav-title {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .input-group {
+        flex-direction: column;
+      }
+
+      .input-group .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">ID</div>
+        <span>China ID Card Validator</span>
+      </a>
+      <span class="header-badge">v1.0.0</span>
+    </div>
+  </header>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="columns is-centered">
-        <div class="column is-half is-narrow">
-          <div class="field">
-            <label class="label">身份证号：</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="ID Card Number" id="text" disabled>
-            </div>
-            <p class="help" id="tip" style="display:none"></p>
-          </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-primary" id="check" disabled>检查</button>
-            </div>
-            <div class="control">
-              <button class="button is-warning" id="reset" disabled>重置</button>
-            </div>
-            <div class="control">
-              <button class="button " id="random" disabled>随机号码</button>
-            </div>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="nav-section">
+        <div class="nav-title">API Reference</div>
+        <a class="nav-link active" href="#isValid">isValid()</a>
+        <a class="nav-link" href="#parse">parse()</a>
+        <a class="nav-link" href="#mask">mask()</a>
+        <a class="nav-link" href="#toEighteen">toEighteen()</a>
+        <a class="nav-link" href="#getCheckCode">getCheckCode()</a>
+        <a class="nav-link" href="#checkProvince">checkProvince()</a>
+        <a class="nav-link" href="#checkBaseFormat">checkBaseFormat()</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-title">Resources</div>
+        <a class="nav-link" href="#test-data">Test Data</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Hero -->
+      <section class="hero">
+        <h1>China ID Card Validator</h1>
+        <p>基于 GB 11643-1999 标准的中华人民共和国公民身份证号码验证工具库。支持 15 位和 18 位身份证的验证、解析和转换。</p>
+      </section>
+
+      <!-- isValid Demo -->
+      <section class="card" id="isValid">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">isValid(id) — 快速验证</h2>
+            <span class="card-badge green">推荐</span>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <script>NProgress && NProgress.start();</script>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="isValidInput" placeholder="输入身份证号码">
+              <button class="btn btn-primary" id="isValidBtn">验证</button>
+              <button class="btn btn-secondary" id="isValidRandom">随机号码</button>
+            </div>
+            <div class="info-grid" id="isValidResult" style="margin-top: 0.75rem; display: none;">
+              <div class="info-card">
+                <div class="info-label">结果</div>
+                <div class="info-value" id="isValidValue">-</div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { isValid } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              <span class="code-comment">// 快速验证身份证是否有效</span><br>
+              isValid(<span class="code-string">'622922197808118498'</span>);  <span class="code-comment">// → true</span><br>
+              isValid(<span class="code-string">'123456789012345678'</span>); <span class="code-comment">// → false</span>
+            </code>
+          </div>
+        </div>
+      </section>
 
+      <!-- parse Demo -->
+      <section class="card" id="parse">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">parse(id) — 完整解析</h2>
+            <span class="card-badge blue">最常用</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="parseInput" placeholder="输入身份证号码">
+              <button class="btn btn-primary" id="parseBtn">解析</button>
+              <button class="btn btn-secondary" id="parseRandom">随机号码</button>
+            </div>
+            <div class="info-grid" id="parseInfo" style="display: none;">
+              <div class="info-card">
+                <div class="info-label">省份</div>
+                <div class="info-value" id="infoProvince">-</div>
+              </div>
+              <div class="info-card">
+                <div class="info-label">出生日期</div>
+                <div class="info-value" id="infoBirthDate">-</div>
+              </div>
+              <div class="info-card">
+                <div class="info-label">性别</div>
+                <div class="info-value" id="infoGender">-</div>
+              </div>
+              <div class="info-card">
+                <div class="info-label">年龄</div>
+                <div class="info-value" id="infoAge">-</div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { parse } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              <span class="code-keyword">const</span> result = parse(<span class="code-string">'622922197808118498'</span>);<br>
+              <span class="code-comment">// {</span><br>
+              <span class="code-comment">//   </span><span class="code-property">isValid</span>: <span class="code-keyword">true</span>,<br>
+              <span class="code-comment">//   </span><span class="code-property">province</span>: <span class="code-string">'甘肃省'</span>,<br>
+              <span class="code-comment">//   </span><span class="code-property">birthDate</span>: <span class="code-string">'1978-08-11'</span>,<br>
+              <span class="code-comment">//   </span><span class="code-property">gender</span>: <span class="code-string">'male'</span>,<br>
+              <span class="code-comment">//   </span><span class="code-property">age</span>: <span class="code-string">47</span>,<br>
+              <span class="code-comment">//   ...</span><br>
+              <span class="code-comment">// }</span>
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- mask Demo -->
+      <section class="card" id="mask">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">mask(id) — 隐私脱敏</h2>
+            <span class="card-badge orange">隐私保护</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="maskInput" placeholder="输入身份证号码">
+              <button class="btn btn-primary" id="maskBtn">脱敏</button>
+              <button class="btn btn-secondary" id="maskRandom">随机号码</button>
+            </div>
+            <input type="text" class="input result" id="maskResult" placeholder="脱敏结果" readonly style="margin-top: 0.75rem;">
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { mask } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              mask(<span class="code-string">'622922197808118498'</span>);  <span class="code-comment">// → '622***********8498'</span><br>
+              mask(<span class="code-string">'110101900101001'</span>);    <span class="code-comment">// → '110***********1001'</span>
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- toEighteen Demo -->
+      <section class="card" id="toEighteen">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">toEighteen(id) — 15位转18位</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="toEighteenInput" placeholder="输入15位身份证号码">
+              <button class="btn btn-primary" id="toEighteenBtn">转换</button>
+            </div>
+            <input type="text" class="input result" id="toEighteenResult" placeholder="18位结果" readonly style="margin-top: 0.75rem;">
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { toEighteen } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              toEighteen(<span class="code-string">'110101900101001'</span>);  <span class="code-comment">// → '110101199001010018'</span>
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- getCheckCode Demo -->
+      <section class="card" id="getCheckCode">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">getCheckCode(id) — 计算校验码</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="checkCodeInput" placeholder="输入身份证号码（前17位）">
+              <button class="btn btn-primary" id="checkCodeBtn">计算</button>
+            </div>
+            <input type="text" class="input result" id="checkCodeResult" placeholder="校验码" readonly style="margin-top: 0.75rem;">
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { getCheckCode } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              getCheckCode(<span class="code-string">'62292219780811849'</span>);  <span class="code-comment">// → '8'</span>
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- checkProvince Demo -->
+      <section class="card" id="checkProvince">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">checkProvince(id) — 省份验证</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="provinceInput" placeholder="输入身份证号码">
+              <button class="btn btn-primary" id="provinceBtn">验证</button>
+            </div>
+            <input type="text" class="input result" id="provinceResult" placeholder="省份验证结果" readonly style="margin-top: 0.75rem;">
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { checkProvince } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              checkProvince(<span class="code-string">'622922197808118498'</span>); <span class="code-comment">// → true (甘肃省)</span><br>
+              checkProvince(<span class="code-string">'999922197808118498'</span>); <span class="code-comment">// → false</span>
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- checkBaseFormat Demo -->
+      <section class="card" id="checkBaseFormat">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">checkBaseFormat(id) — 格式验证</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="demo">
+            <div class="demo-header">
+              <span class="demo-label">Live Demo</span>
+            </div>
+            <div class="input-group">
+              <input type="text" class="input" id="formatInput" placeholder="输入身份证号码">
+              <button class="btn btn-primary" id="formatBtn">验证</button>
+            </div>
+            <input type="text" class="input result" id="formatResult" placeholder="格式验证结果" readonly style="margin-top: 0.75rem;">
+          </div>
+          <div class="code-block">
+            <code>
+              <span class="code-keyword">import</span> { checkBaseFormat } <span class="code-keyword">from</span> <span class="code-string">'china-id-card'</span>;<br><br>
+              checkBaseFormat(<span class="code-string">'622922197808118498'</span>); <span class="code-comment">// → true</span><br>
+              checkBaseFormat(<span class="code-string">'110101900101001'</span>);   <span class="code-comment">// → true</span><br>
+              checkBaseFormat(<span class="code-string">'12345'</span>);             <span class="code-comment">// → false</span>
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Test Data -->
+      <section class="card" id="test-data">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">测试数据</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="code-block">
+            <code>
+              [<br>
+              &nbsp;&nbsp;<span class="code-string">'622922197808118498'</span>, <span class="code-comment">// 甘肃省</span><br>
+              &nbsp;&nbsp;<span class="code-string">'37012519790112881X'</span>, <span class="code-comment">// 山东省</span><br>
+              &nbsp;&nbsp;<span class="code-string">'510726198609245808'</span>, <span class="code-comment">// 四川省</span><br>
+              &nbsp;&nbsp;<span class="code-string">'530629198901284967'</span>, <span class="code-comment">// 云南省</span><br>
+              &nbsp;&nbsp;<span class="code-string">'31000019850412412X'</span>, <span class="code-comment">// 上海市</span><br>
+              &nbsp;&nbsp;<span class="code-string">'110101900101001'</span>, &nbsp;&nbsp;<span class="code-comment">// 15位北京市</span><br>
+              &nbsp;&nbsp;<span class="code-string">'810000199012305532'</span>, <span class="code-comment">// 香港特别行政区</span><br>
+              &nbsp;&nbsp;<span class="code-string">'820000199012305521'</span> &nbsp;&nbsp;<span class="code-comment">// 澳门特别行政区</span><br>
+              ]
+            </code>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    Powered by <a href="https://itony.net">iTony.net</a> &mdash; Based on GB 11643-1999
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="../dist/index.umd.js"></script>
   <script>
-    requirejs.config({
-      //To get timely, correct error triggers in IE, force a define/shim exports check.
-      enforceDefine: true,
-      paths: {
-        jquery: [
-          'https://cdn.jsdelivr.net/npm/jquery/dist/jquery.slim.min'
-        ],
-        chinaIdCard: [
-          'https://cdn.jsdelivr.net/gh/tonyc726/china-id-card/dist/index.amd.min'
-        ]
+    (function () {
+      'use strict';
+
+      // Toast
+      function showToast(message, type) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = 'toast toast-' + type + ' show';
+        setTimeout(() => toast.classList.remove('show'), 2000);
       }
-    });
-    require(['jquery', 'chinaIdCard'], function ($, IDCard) {
-      NProgress.done();
-      var $text = $('#text'),
-        $tip = $('#tip');
-      var testList = [
-        '622922197808118498',
-        '37012519790112881X',
-        '510726198609245808',
-        '530629198901284967',
-        '31000019850412412X',
-      ];
 
-      $text.prop('disabled', null);
+      // Random ID Generator
+      function generateRandomId() {
+        const provinces = [
+          '11', '12', '13', '14', '15', '21', '22', '23', '31', '32', '33', '34',
+          '35', '36', '37', '41', '42', '43', '44', '45', '46', '50', '51', '52',
+          '53', '54', '61', '62', '63', '64', '65', '71', '81', '82'
+        ];
+        const provinceCode = provinces[Math.floor(Math.random() * provinces.length)];
+        const year = 1970 + Math.floor(Math.random() * 40);
+        const month = 1 + Math.floor(Math.random() * 12);
+        const day = 1 + Math.floor(Math.random() * 28);
+        const seq = 100 + Math.floor(Math.random() * 900);
+        const seventeen = provinceCode + String(10 + Math.floor(Math.random() * 90)).padStart(2, '0') +
+          String(10 + Math.floor(Math.random() * 90)).padStart(2, '0') +
+          year + String(month).padStart(2, '0') + String(day).padStart(2, '0') +
+          String(seq).padStart(3, '0');
+        const weights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+        const checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+        let sum = 0;
+        for (let i = 0; i < 17; i++) sum += parseInt(seventeen[i]) * weights[i];
+        return seventeen + checkCodes[sum % 11];
+      }
 
-      function toggleTip(type, message) {
-        $text.removeClass('is-success is-danger');
-        $tip.removeClass('is-success is-danger');
-        if (
-          type &&
-          (/success|danger/i).test(type) &&
-          message &&
-          message.length
-        ) {
-          $text.addClass('is-' + type);
-          $tip.addClass('is-' + type).text(message).show();
+      // Set result style
+      function setResult(el, value, isSuccess) {
+        el.classList.remove('success', 'error');
+        el.classList.add(isSuccess ? 'success' : 'error');
+        el.value = String(value);
+      }
+
+      // ==================== isValid Demo ====================
+      const isValidInput = document.getElementById('isValidInput');
+      const isValidResult = document.getElementById('isValidResult');
+      const isValidValue = document.getElementById('isValidValue');
+      document.getElementById('isValidBtn').addEventListener('click', () => {
+        const result = chinaIdCard.isValid(isValidInput.value);
+        isValidResult.style.display = 'grid';
+        isValidValue.textContent = result ? '有效' : '无效';
+        isValidValue.style.color = result ? '#0d9488' : '#f43f5e';
+        showToast(result ? '验证通过' : '验证失败', result ? 'success' : 'error');
+      });
+      document.getElementById('isValidRandom').addEventListener('click', () => {
+        isValidInput.value = generateRandomId();
+        isValidResult.style.display = 'none';
+      });
+
+      // ==================== parse Demo ====================
+      const parseInput = document.getElementById('parseInput');
+      const parseInfo = document.getElementById('parseInfo');
+      document.getElementById('parseBtn').addEventListener('click', () => {
+        const result = chinaIdCard.parse(parseInput.value);
+        parseInfo.style.display = 'grid';
+        document.getElementById('infoProvince').textContent = result.province || '-';
+        document.getElementById('infoBirthDate').textContent = result.birthDate || '-';
+        document.getElementById('infoGender').textContent = result.gender === 'male' ? '男' : '女';
+        document.getElementById('infoAge').textContent = result.age || '-';
+        showToast(result.isValid ? '解析成功' : '格式错误', result.isValid ? 'success' : 'error');
+      });
+      document.getElementById('parseRandom').addEventListener('click', () => {
+        parseInput.value = generateRandomId();
+        parseInfo.style.display = 'none';
+      });
+
+      // ==================== mask Demo ====================
+      const maskInput = document.getElementById('maskInput');
+      const maskResult = document.getElementById('maskResult');
+      document.getElementById('maskBtn').addEventListener('click', () => {
+        const result = chinaIdCard.mask(maskInput.value);
+        setResult(maskResult, result, result !== 'Invalid ID');
+        showToast(result !== 'Invalid ID' ? '脱敏成功' : '格式错误', result !== 'Invalid ID' ? 'success' : 'error');
+      });
+      document.getElementById('maskRandom').addEventListener('click', () => {
+        maskInput.value = generateRandomId();
+        maskResult.classList.remove('success', 'error');
+        maskResult.value = '';
+      });
+
+      // ==================== toEighteen Demo ====================
+      const toEighteenInput = document.getElementById('toEighteenInput');
+      const toEighteenResult = document.getElementById('toEighteenResult');
+      document.getElementById('toEighteenBtn').addEventListener('click', () => {
+        const result = chinaIdCard.toEighteen(toEighteenInput.value);
+        if (result) {
+          setResult(toEighteenResult, result, true);
+          showToast('转换成功', 'success');
         } else {
-          $tip.hide().text(null);
+          setResult(toEighteenResult, '无效的15位身份证', false);
+          showToast('转换失败', 'error');
         }
-      }
+      });
 
-      $('#check').on('click', function () {
-        var idCardNumber = $.trim($text.val());
-        if (idCardNumber && idCardNumber.length) {
-          var isVerified = IDCard.default(idCardNumber).isVerified;
-          toggleTip(null, null);
-          toggleTip(
-            isVerified ? 'success' : 'danger',
-            isVerified ? '身份证通过验证' : '身份证未能通过验证'
-          );
+      // ==================== getCheckCode Demo ====================
+      const checkCodeInput = document.getElementById('checkCodeInput');
+      const checkCodeResult = document.getElementById('checkCodeResult');
+      document.getElementById('checkCodeBtn').addEventListener('click', () => {
+        const result = chinaIdCard.getCheckCode(checkCodeInput.value);
+        if (result) {
+          setResult(checkCodeResult, result, true);
+          showToast('计算成功', 'success');
+        } else {
+          setResult(checkCodeResult, '需要17位数字', false);
+          showToast('计算失败', 'error');
         }
-      }).prop('disabled', null);
+      });
 
-      $('#reset').on('click', function () {
-        $text.val(null);
-        toggleTip(null, null);
-      }).prop('disabled', null);
+      // ==================== checkProvince Demo ====================
+      const provinceInput = document.getElementById('provinceInput');
+      const provinceResult = document.getElementById('provinceResult');
+      document.getElementById('provinceBtn').addEventListener('click', () => {
+        const result = chinaIdCard.checkProvince(provinceInput.value);
+        setResult(provinceResult, result ? '省份编码有效' : '省份编码无效', result);
+        showToast(result ? '省份有效' : '省份无效', result ? 'success' : 'error');
+      });
 
-      $('#random').on('click', function () {
-        toggleTip(null, null);
-        $text.val(testList[Math.floor(Math.random() * (testList.length))]);
-      }).prop('disabled', null);
-      NProgress.remove();
-    });
+      // ==================== checkBaseFormat Demo ====================
+      const formatInput = document.getElementById('formatInput');
+      const formatResult = document.getElementById('formatResult');
+      document.getElementById('formatBtn').addEventListener('click', () => {
+        const result = chinaIdCard.checkBaseFormat(formatInput.value);
+        setResult(formatResult, result ? '格式正确' : '格式错误', result);
+        showToast(result ? '格式正确' : '格式错误', result ? 'success' : 'error');
+      });
+
+      // Init with random IDs
+      isValidInput.value = generateRandomId();
+      parseInput.value = generateRandomId();
+      maskInput.value = generateRandomId();
+      toEighteenInput.value = '110101900101001';
+      checkCodeInput.value = generateRandomId().slice(0, 17);
+      provinceInput.value = generateRandomId();
+      formatInput.value = generateRandomId();
+
+      // Scroll spy
+      const sections = document.querySelectorAll('.card');
+      const navLinks = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+    })();
   </script>
 </body>
 
