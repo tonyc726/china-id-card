@@ -31,7 +31,7 @@ describe('checkBaseFormat', () => {
   });
 
   it('should handle number input', () => {
-    expect(checkBaseFormat(310000810227632 as any)).toBe(true);
+    expect(checkBaseFormat(310000810227632 as unknown)).toBe(true);
   });
 });
 
@@ -199,7 +199,7 @@ describe('parse', () => {
   });
 
   it('should handle number input', () => {
-    const result = parse(310000810227632 as any);
+    const result = parse(310000810227632 as unknown);
     expect(result.isValid).toBe(true);
     expect(result.province).toBe('上海市');
   });
@@ -244,6 +244,6 @@ describe('isValid', () => {
   });
 
   it('should handle number input', () => {
-    expect(isValid(310000810227632 as any)).toBe(true);
+    expect(isValid(310000810227632 as unknown)).toBe(true);
   });
 });
