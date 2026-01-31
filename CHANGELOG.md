@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/tonyc726/china-id-card/compare/v2.2.0...v2.2.1) (2026-01-31)
+
+
+### Bug Fixes
+
+* **deps:** resolve security vulnerabilities via pnpm overrides ([ca0724a](https://github.com/tonyc726/china-id-card/commit/ca0724a6db902acc09d13be3faacb0449e4c32a5))
+
 # [2.2.0](https://github.com/tonyc726/china-id-card/compare/v2.1.2...v2.2.0) (2026-01-31)
 
 
