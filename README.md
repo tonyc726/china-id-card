@@ -12,7 +12,7 @@
   [![Size][bundlephobia-image]][bundlephobia-url]
   [![license][license-image]][license-url]
 
-  [English](./README.md) · [在线文档](https://tonyc726.github.io/china-id-card) · [国内访问](https://cdn.jsdelivr.net/gh/tonyc726/china-id-card@gh-pages/) · [标准 PDF](/docs/GB_11643-1999_公民身份号码.pdf)
+  [English](./README.md) · [在线文档](https://tonyc726.github.io/china-id-card) · [国内访问](https://cdn.jsdelivr.net/gh/tonyc726/china-id-card@gh-pages/) · [更新日志](./CHANGELOG.md) · [标准 PDF](/docs/GB_11643-1999_公民身份号码.pdf)
 </div>
 
 ## ✨ 特性
