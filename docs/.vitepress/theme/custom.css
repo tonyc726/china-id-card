@@ -1,0 +1,129 @@
+/* Demo styles for ID Card Validator */
+.demo-container {
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.demo-input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.demo-input {
+  flex: 1;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: var(--vp-font-family-mono);
+}
+
+.demo-input:focus {
+  border-color: var(--vp-c-brand);
+}
+
+.demo-btn {
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.demo-btn-primary {
+  background: var(--vp-c-brand);
+  color: white;
+}
+
+.demo-btn-primary:hover {
+  background: var(--vp-c-brand-dark);
+}
+
+.demo-btn-secondary {
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-divider);
+}
+
+.demo-btn-secondary:hover {
+  background: var(--vp-c-bg-soft);
+}
+
+.demo-result {
+  padding: 0.625rem 0.875rem;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 120px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.demo-result.success {
+  background: rgba(80, 227, 194, 0.15);
+  color: #0d9488;
+  border: 1px solid rgba(80, 227, 194, 0.3);
+}
+
+.demo-result.error {
+  background: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.demo-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.demo-info-card {
+  background: var(--vp-c-bg);
+  padding: 0.875rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.demo-info-label {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 0.25rem;
+}
+
+.demo-info-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+.demo-result-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  margin-top: 0.75rem;
+  font-family: var(--vp-font-family-mono);
+}
+
+.demo-result-input.success {
+  background: rgba(80, 227, 194, 0.08);
+  border-color: rgba(80, 227, 194, 0.3);
+  color: #0d9488;
+}
+
+.demo-result-input.error {
+  background: rgba(244, 63, 94, 0.08);
+  border-color: rgba(244, 63, 94, 0.3);
+  color: #f43f5e;
+}

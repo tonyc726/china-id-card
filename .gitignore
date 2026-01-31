@@ -462,3 +462,6 @@ xcuserdata/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/git,vim,less,node,linux,macos,xcode,eclipse,windows,sublimetext,tortoisegit,intellij+all
+
+# VitePress build output
+pages
