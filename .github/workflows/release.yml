@@ -11,6 +11,11 @@ jobs:
       contents: write
       packages: write
       pull-requests: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -50,11 +55,14 @@ jobs:
         run: |
           sed -i "s/<span class=\"header-badge\">.*<\/span>/<span class=\"header-badge\">v${{ steps.version.outputs.version }}<\/span>/" docs/index.html
 
-      - name: Commit docs update
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html
-          git commit -m "docs: update version to ${{ steps.version.outputs.version }}" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git push
+      - name: Build VitePress
+        run: pnpm run docs:build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
