@@ -465,3 +465,6 @@ xcuserdata/
 
 # VitePress build output
 docs/.vitepress/cache
+
+# GitHub Pages deployment directory
+pages

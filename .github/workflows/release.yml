@@ -51,18 +51,12 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Update docs version
-        run: |
-          sed -i "s/<span class=\"header-badge\">.*<\/span>/<span class=\"header-badge\">v${{ steps.version.outputs.version }}<\/span>/" docs/index.html
-
       - name: Build VitePress
         run: pnpm run docs:build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: pages
-
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: pages
+          publish_branch: gh-pages
