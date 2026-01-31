@@ -10,7 +10,7 @@
 
 基于 GB 11643-1999 国家标准的中国公民身份证号码验证工具库，支持 15 位和 18 位身份证号码验证。
 
-[NPM](https://www.npmjs.com/package/china-id-card) | [在线文档](https://tonyc726.github.io/china-id-card) | [标准 PDF](/docs/GB_11643-1999_公民身份号码.pdf)
+[NPM](https://www.npmjs.com/package/china-id-card) | [在线文档](https://tonyc726.github.io/china-id-card) | [国内访问](https://cdn.jsdelivr.net/gh/tonyc726/china-id-card@gh-pages/) | [标准 PDF](/docs/GB_11643-1999_公民身份号码.pdf)
 
 ## 身份证号码结构
 

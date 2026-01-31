@@ -5,6 +5,7 @@ export default defineConfig({
   description: '基于 GB 11643-1999 标准的中华人民共和国公民身份证号码验证工具库',
   lang: 'zh-CN',
   lastUpdated: true,
+  base: '/china-id-card/',
   outDir: '../pages',
   themeConfig: {
     siteTitle: 'China ID Card Validator',
