@@ -34,7 +34,7 @@
     "docs:dev": "vitepress dev docs",
     "lint": "eslint src test --format stylish",
     "format": "prettier --write 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "typecheck:test": "tsc --project tsconfig.test.json --noEmit",
     "semantic-release": "npx semantic-release",
