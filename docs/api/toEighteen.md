@@ -1,5 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/china-id-card@latest/dist/index.umd.js"></script>
-
 # toEighteen(id)
 
 将 15 位身份证转换为 18 位。
@@ -37,26 +35,3 @@ import { toEighteen } from 'china-id-card'
 
 toEighteen('110101900101001')  // → '110101199001010018'
 ```
-
-<script>
-(function() {
-  const input = document.getElementById('toEighteenInput')
-  const btn = document.getElementById('toEighteenBtn')
-  const result = document.getElementById('toEighteenResult')
-
-  btn.addEventListener('click', () => {
-    const eighteen = chinaIdCard.toEighteen(input.value)
-    if (eighteen) {
-      result.value = eighteen
-      result.classList.remove('error')
-      result.classList.add('success')
-    } else {
-      result.value = '无效的15位身份证'
-      result.classList.remove('success')
-      result.classList.add('error')
-    }
-  })
-
-  input.value = '110101900101001'
-})()
-</script>

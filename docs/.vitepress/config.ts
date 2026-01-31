@@ -16,7 +16,7 @@ export default defineConfig({
     ],
     sidebar: [
       {
-        text: 'API 参考',
+        text: '函数列表',
         items: [
           { text: 'isValid()', link: '/api/isValid' },
           { text: 'parse()', link: '/api/parse' },
