@@ -39,11 +39,11 @@ const g = ["1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"], h = [7, 9, 10
 }, D = (t) => {
   const e = t.slice(0, 17);
   if (!/^\d{17}$/.test(e)) return null;
-  const n = e.split("").reduce((r, s, i) => r + parseInt(s, 10) * (h[i] ?? 0), 0);
-  return g[n % 11] ?? null;
+  const n = e.split("").reduce((r, s, i) => r + parseInt(s, 10) * h[i], 0);
+  return g[n % 11];
 }, p = (t) => {
   if (!/^\d{15}$/.test(t)) return null;
-  const e = t.slice(0, 6), n = t.slice(6, 8), r = t.slice(8), s = `${e}19${n}${r}`, i = s.split("").reduce((l, a, d) => l + parseInt(a, 10) * (h[d] ?? 0), 0), o = g[i % 11] ?? "1";
+  const e = t.slice(0, 6), n = t.slice(6, 8), r = t.slice(8), s = `${e}19${n}${r}`, i = s.split("").reduce((l, a, d) => l + parseInt(a, 10) * h[d], 0), o = g[i % 11];
   return `${s}${o}`;
 }, v = (t) => {
   const e = String(t), n = e.length === 15, r = e.length === 18;

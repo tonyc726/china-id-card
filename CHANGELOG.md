@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/tonyc726/china-id-card/compare/v2.1.2...v2.2.0) (2026-01-31)
+
+
+### Features
+
+* **coverage:** improve test coverage to 100% and integrate Codecov ([3940052](https://github.com/tonyc726/china-id-card/commit/39400525f5a1b445c1c3f0a43002e09ffeb41a2b))
+
 ## [2.1.2](https://github.com/tonyc726/china-id-card/compare/v2.1.1...v2.1.2) (2026-01-31)
 
 
