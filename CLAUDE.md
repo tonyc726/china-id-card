@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A Chinese Citizen ID Card validation library implementing GB 11643-1999 national standard. Validates both 15-digit and 18-digit ID card numbers using weighted checksum algorithm.
+A Chinese Citizen ID Card validation library implementing GB 11643-1999 (Citizen identification number) national standard. Validates both 15-digit and 18-digit ID card numbers using weighted checksum algorithm.
 
 ## Commands
 

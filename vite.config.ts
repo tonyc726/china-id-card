@@ -1,9 +1,6 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import path from 'path';
-import pkg from './package.json';
-
-const banner = `/* ${pkg.name} v${pkg.version} - ${pkg.author} */`;
 
 export default defineConfig({
   plugins: [
@@ -18,9 +15,6 @@ export default defineConfig({
       name: 'chinaIdCard',
       formats: ['es', 'cjs', 'umd'],
       fileName: (format) => `index.${format}.js`,
-    },
-    rollupOptions: {
-      external: [],
     },
     emptyOutDir: true,
   },

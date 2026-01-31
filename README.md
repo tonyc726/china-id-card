@@ -1,6 +1,7 @@
-# China ID Card Validator
-
-基于 GB 11643-1999 标准的中华人民共和国公民身份证号码验证工具库
+<div align="center">
+  <img src="logo.png" alt="China ID Card" width="120" />
+  <h1><a href="https://tonyc726.github.io/china-id-card">China ID Card</a></h1>
+  <p>基于 GB 11643-1999 标准的中华人民共和国公民身份号码验证工具库</p>
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
@@ -9,16 +10,21 @@
 [![Size][bundlephobia-image]][bundlephobia-url]
 [![license][license-image]][license-url]
 
+简体中文 | [English](README_EN.md)
+
+</div>
+
 ## 特性
 
-- **0 依赖** - 无任何第三方依赖，安全可靠
-- **格式验证** - 检查身份证基本格式
-- **省份校验** - 验证省份代码有效性
-- **生日校验** - 验证出生日期合法性
-- **校验码验证** - 使用加权算法验证校验位
-- **15/18位转换** - 支持相互转换
-- **信息解析** - 解析省份、出生日期、性别、年龄
-- **脱敏处理** - 隐藏部分身份证号码
+| 特性            | 说明                           |
+| --------------- | ------------------------------ |
+| **0 依赖**      | 无任何第三方依赖，安全可靠     |
+| **格式验证**    | 检查身份证基本格式（15/18位）  |
+| **省份校验**    | 验证省份代码有效性             |
+| **校验码验证**  | 使用加权算法验证校验位         |
+| **15/18位转换** | 支持相互转换                   |
+| **信息解析**    | 解析省份、出生日期、性别、年龄 |
+| **脱敏处理**    | 隐藏部分身份证号码             |
 
 ## 安装
 
@@ -26,66 +32,63 @@
 pnpm add china-id-card
 ```
 
-## 使用
+## 快速开始
 
 ```typescript
-import { isValid, parse, mask } from 'china-id-card'
+import { isValid, parse, mask } from 'china-id-card';
 
-const info = parse('622922197808118498')
+// 解析身份证信息
+const info = parse('622922197808118498');
 // → { isValid: true, province: '甘肃省', birthDate: '1978-08-11', gender: 'male', age: 46, ... }
 
-isValid('622922197808118498')  // → true
-mask('622922197808118498')     // → '622***********8498'
+// 快速验证
+isValid('622922197808118498'); // → true
+
+// 脱敏处理
+mask('622922197808118498'); // → '622***********8498'
 ```
 
-## API
+## API 参考
 
-### isValid(id: string): boolean
+### 核心函数
 
-快速验证身份证是否有效。
+| 函数               | 返回类型         | 说明                     |
+| ------------------ | ---------------- | ------------------------ |
+| `isValid(id)`      | `boolean`        | 快速验证身份证是否有效   |
+| `parse(id)`        | `IDCardInfo`     | 解析完整身份证信息       |
+| `mask(id)`         | `string`         | 脱敏处理（显示前3后4位） |
+| `toEighteen(id)`   | `string \| null` | 15位转18位               |
+| `getCheckCode(id)` | `string \| null` | 计算校验码               |
 
-### parse(id: string): IDCardInfo
+### 校验函数
 
-解析身份证详细信息，返回对象包含以下字段：
+| 函数                  | 返回类型  | 说明         |
+| --------------------- | --------- | ------------ |
+| `checkBaseFormat(id)` | `boolean` | 检验基本格式 |
+| `checkProvince(id)`   | `boolean` | 检验省份代码 |
 
-| 字段            | 类型               | 说明                  |
-| --------------- | ------------------ | --------------------- |
-| `isValid`       | boolean            | 身份证是否有效        |
-| `provinceCode`  | string             | 省份代码              |
-| `province`      | string             | 省份名称              |
-| `birthDate`     | string             | 出生日期 (YYYY-MM-DD) |
-| `gender`        | 'male' \| 'female' | 性别                  |
-| `age`           | number             | 年龄                  |
-| `fifteenDigit`  | string \| null     | 15位身份证号码        |
-| `eighteenDigit` | string \| null     | 18位身份证号码        |
+### IDCardInfo 类型
 
-### mask(id: string): string
-
-对身份证进行脱敏处理，显示前3位和后4位。
-
-### toEighteen(id: string): string | null
-
-将15位身份证转换为18位。
-
-### getCheckCode(id: string): string | null
-
-计算18位身份证的校验码。
-
-### checkBaseFormat(id: string): boolean
-
-检验身份证基本格式（长度和字符规则）。
-
-### checkProvince(id: string): boolean
-
-检验省份代码是否有效。
-
-## 文档
-
-[在线文档](https://tonyc726.github.io/china-id-card)
+```typescript
+interface IDCardInfo {
+  isValid: boolean; // 身份证是否有效
+  provinceCode: string; // 省份代码 (如: '62')
+  province: string; // 省份名称 (如: '甘肃省')
+  birthDate: string; // 出生日期 (YYYY-MM-DD)
+  gender: 'male' | 'female'; // 性别
+  age: number; // 年龄
+  fifteenDigit: string | null; // 15位身份证
+  eighteenDigit: string | null; // 18位身份证
+}
+```
 
 ## 许可证
 
 MIT License
+
+---
+
+Made by [tonyc726](https://itony.net)
 
 [npm-image]: https://img.shields.io/npm/v/china-id-card?style=flat-square
 [npm-url]: https://npmjs.org/package/china-id-card

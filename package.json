@@ -1,7 +1,7 @@
 {
   "name": "china-id-card",
   "version": "2.1.1",
-  "description": "China citizen identification number",
+  "description": "中华人民共和国公民身份号码验证工具库 (GB 11643-1999)",
   "repository": "https://github.com/tonyc726/china-id-card",
   "author": "tonyc726 <zhujf620@gmail.com>",
   "license": "MIT",
@@ -67,19 +67,30 @@
     "vitest": "^4.0.18"
   },
   "release": {
-    "branches": ["master"],
+    "branches": [
+      "master"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      ["@semantic-release/changelog", {
-        "changelogFile": "CHANGELOG.md"
-      }],
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
       "@semantic-release/npm",
       "@semantic-release/github",
-      ["@semantic-release/git", {
-        "assets": ["CHANGELOG.md", "dist"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }]
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "dist"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
     ]
   },
   "husky": {

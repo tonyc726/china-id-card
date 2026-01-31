@@ -2,9 +2,7 @@
 
 基于 GB 11643-1999 标准的中华人民共和国公民身份证号码验证工具库。支持 15 位和 18 位身份证号码的验证、解析和转换。
 
-[![npm version](https://img.shields.io/npm/v/china-id-card?style=flat-square)](https://www.npmjs.com/package/china-id-card) [![tested with vitest](https://img.shields.io/badge/tested_with-vitest-6.9?style=flat-square)](https://github.com/vitest-dev/vitest) [![Coverage Status](https://codecov.io/gh/tonyc726/china-id-card/branch/master/graph/badge.svg)](https://codecov.io/gh/tonyc726/china-id-card) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/mashape/apistatus)
-
-[NPM](https://www.npmjs.com/package/china-id-card) | [在线文档](/) | [标准 PDF](/GB_11643-1999_公民身份号码.pdf)
+[![npm version](https://img.shields.io/npm/v/china-id-card?style=flat-square)](https://www.npmjs.com/package/china-id-card) [![Coverage Status](https://codecov.io/gh/tonyc726/china-id-card/branch/master/graph/badge.svg)](https://codecov.io/gh/tonyc726/china-id-card) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/mashape/apistatus)
 
 ## 身份证号码结构
 
@@ -19,16 +17,17 @@
 └───────┴──────────┴───────┴───────┘
 ```
 
-| 字段 | 长度 | 说明 |
-|------|------|------|
-| **地址码** | 6位 | 常住户口所在县（市、旗、区）的行政区划代码，按 GB/T 2260 执行 |
-| **出生日期码** | 8位 | 出生年、月、日，格式 YYYYMMDD |
-| **顺序码** | 3位 | 同一地址码区域内，对同年同月同日出生的人编定的顺序号。奇数男性，偶数女性 |
-| **校验码** | 1位 | 根据 ISO 7064:1983 MOD 11-2 算法计算 |
+| 字段           | 长度 | 说明                                                                     |
+| -------------- | ---- | ------------------------------------------------------------------------ |
+| **地址码**     | 6位  | 常住户口所在县（市、旗、区）的行政区划代码，按 GB/T 2260 执行            |
+| **出生日期码** | 8位  | 出生年、月、日，格式 YYYYMMDD                                            |
+| **顺序码**     | 3位  | 同一地址码区域内，对同年同月同日出生的人编定的顺序号。奇数男性，偶数女性 |
+| **校验码**     | 1位  | 根据 ISO 7064:1983 MOD 11-2 算法计算                                     |
 
 ### 15位身份证格式
 
 15位身份证是早期版本，格式为：
+
 - 地址码（6位）+ 出生日期码（6位 YYMMDD）+ 顺序码（3位）
 
 ## 功能特性
@@ -53,17 +52,17 @@ pnpm add china-id-card
 ### 使用
 
 ```typescript
-import { isValid, parse, mask } from 'china-id-card'
+import { isValid, parse, mask } from 'china-id-card';
 
 // 验证身份证
-isValid('622922197808118498') // → true
+isValid('622922197808118498'); // → true
 
 // 解析身份证信息
-const info = parse('622922197808118498')
+const info = parse('622922197808118498');
 // → { isValid: true, province: '甘肃省', birthDate: '1978-08-11', gender: 'male', ... }
 
 // 脱敏处理
-mask('622922197808118498') // → '622***********8498'
+mask('622922197808118498'); // → '622***********8498'
 ```
 
 ### CommonJS
@@ -103,16 +102,16 @@ isValid('622922197808118499'); // → false
 
 解析身份证详细信息，返回对象包含以下字段：
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `isValid` | boolean | 身份证是否有效 |
-| `provinceCode` | string | 省份代码 |
-| `province` | string | 省份名称 |
-| `birthDate` | string | 出生日期 (YYYY-MM-DD) |
-| `gender` | 'male' \| 'female' | 性别 |
-| `age` | number | 年龄 |
-| `fifteenDigit` | string \| null | 15位身份证号码 |
-| `eighteenDigit` | string \| null | 18位身份证号码 |
+| 字段            | 类型               | 说明                  |
+| --------------- | ------------------ | --------------------- |
+| `isValid`       | boolean            | 身份证是否有效        |
+| `provinceCode`  | string             | 省份代码              |
+| `province`      | string             | 省份名称              |
+| `birthDate`     | string             | 出生日期 (YYYY-MM-DD) |
+| `gender`        | 'male' \| 'female' | 性别                  |
+| `age`           | number             | 年龄                  |
+| `fifteenDigit`  | string \| null     | 15位身份证号码        |
+| `eighteenDigit` | string \| null     | 18位身份证号码        |
 
 ```typescript
 import { parse } from 'china-id-card';
@@ -179,13 +178,13 @@ checkProvince('622922197808118498'); // → true
   '510726198609245808', // 四川省
   '530629198901284967', // 云南省
   '31000019850412412X', // 上海市
-  '110101900101001',    // 15位北京市
+  '110101900101001', // 15位北京市
   '810000199012305532', // 香港特别行政区
-  '820000199012305521'  // 澳门特别行政区
-]
+  '820000199012305521', // 澳门特别行政区
+];
 ```
 
 ## 相关资源
 
 - [GB 11643-1999 标准全文](/GB_11643-1999_公民身份号码.pdf)
-- [GB/T 2260 行政区划代码](https://www.mca.gov.cn/article/sj/tjbz/tjyqhdmhcxhdmfgs/)
+- [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=080D6FBF2BB468F9007657F26D60013E)
