@@ -1,3 +1,11 @@
+## [2.1.2](https://github.com/tonyc726/china-id-card/compare/v2.1.1...v2.1.2) (2026-01-31)
+
+
+### Bug Fixes
+
+* **ci:** remove environment protection for gh-pages deploy ([2f3f140](https://github.com/tonyc726/china-id-card/commit/2f3f140c5676331ae268aad39e38813eabde7e49)), closes [#pages](https://github.com/tonyc726/china-id-card/issues/pages) [peaceiris/actions-#pages](https://github.com/peaceiris/actions-/issues/pages)
+* configure VitePress base path for GitHub Pages ([8b744ce](https://github.com/tonyc726/china-id-card/commit/8b744ce099b6c7059c7c969e36aef7c41952bcc7))
+
 ## [2.1.1](https://github.com/tonyc726/china-id-card/compare/v2.1.0...v2.1.1) (2026-01-31)
 
 
@@ -114,6 +122,3 @@
 
 * 根据GB11643完成基础检验逻辑，同事增加地区及年龄的额外检验 ([bee1af4](https://github.com/tonyc726/china-id-card/commit/bee1af48072513431370599474d033dea3635137))
 * 以rollup为基础，完成构建工具组合 ([d46d487](https://github.com/tonyc726/china-id-card/commit/d46d487a9fe43a5108adfc8923b820af2e4ab8d3))
-
-
-
