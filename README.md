@@ -1,52 +1,32 @@
 # China ID Card Validator
 
-<div align="center">
-  <img height="100" src="./logo.png">
+基于 GB 11643-1999 标准的中华人民共和国公民身份证号码验证工具库
 
-  基于 GB 11643-1999 标准的中华人民共和国公民身份证号码验证工具库
+[![NPM version][npm-image]][npm-url]
+[![Build Status][ci-image]][ci-url]
+[![Coverage Status][codecov-image]][codecov-url]
+[![NPM downloads][download-image]][npm-url]
+[![Size][bundlephobia-image]][bundlephobia-url]
+[![license][license-image]][license-url]
 
-  [![NPM version][npm-image]][npm-url]
-  [![Build Status][ci-image]][ci-url]
-  [![Coverage Status][codecov-image]][codecov-url]
-  [![NPM downloads][download-image]][download-url]
-  [![Size][bundlephobia-image]][bundlephobia-url]
-  [![license][license-image]][license-url]
+## 特性
 
-  [English](./README.md) · [在线文档](https://tonyc726.github.io/china-id-card) · [国内访问](https://cdn.jsdelivr.net/gh/tonyc726/china-id-card@gh-pages/) · [更新日志](./CHANGELOG.md) · [标准 PDF](/docs/GB_11643-1999_公民身份号码.pdf)
-</div>
+- **0 依赖** - 无任何第三方依赖，安全可靠
+- **格式验证** - 检查身份证基本格式
+- **省份校验** - 验证省份代码有效性
+- **生日校验** - 验证出生日期合法性
+- **校验码验证** - 使用加权算法验证校验位
+- **15/18位转换** - 支持相互转换
+- **信息解析** - 解析省份、出生日期、性别、年龄
+- **脱敏处理** - 隐藏部分身份证号码
 
-## ✨ 特性
-
-- ⚡ **0 依赖** - 无任何第三方依赖，安全可靠
-- ✅ **格式验证** - 检查身份证基本格式
-- 🏙️ **省份校验** - 验证省份代码有效性
-- 🎂 **生日校验** - 验证出生日期合法性
-- 🔐 **校验码验证** - 使用加权算法验证校验位
-- 🔄 **15/18位转换** - 支持相互转换
-- 📊 **信息解析** - 解析省份、出生日期、性别、年龄
-- 🔒 **脱敏处理** - 隐藏部分身份证号码
-
-## 🖥 环境支持
-
-- Node.js 18+
-- 现代浏览器
-- Deno / Bun
-
-## 📦 安装
+## 安装
 
 ```bash
 pnpm add china-id-card
 ```
 
-```bash
-npm install china-id-card
-```
-
-```bash
-bun add china-id-card
-```
-
-## 🔨 使用
+## 使用
 
 ```typescript
 import { isValid, parse, mask } from 'china-id-card'
@@ -63,11 +43,6 @@ mask('622922197808118498')     // → '622***********8498'
 ### isValid(id: string): boolean
 
 快速验证身份证是否有效。
-
-```ts
-import { isValid } from 'china-id-card';
-isValid('110101199001011001'); // true
-```
 
 ### parse(id: string): IDCardInfo
 
@@ -104,23 +79,13 @@ isValid('110101199001011001'); // true
 
 检验省份代码是否有效。
 
-## 📖 文档
+## 文档
 
-- [在线文档](https://tonyc726.github.io/china-id-card)
-- [API 参考](/docs/api)
-- [GB 11643-1999 标准](/docs/GB_11643-1999_公民身份号码.pdf)
+[在线文档](https://tonyc726.github.io/china-id-card)
 
-## 🤝 贡献
-
-欢迎提交 Pull Request 和 Issue！
-
-## 📄 许可证
+## 许可证
 
 MIT License
-
----
-
-Made by [Tony](https://itony.net)
 
 [npm-image]: https://img.shields.io/npm/v/china-id-card?style=flat-square
 [npm-url]: https://npmjs.org/package/china-id-card
@@ -129,7 +94,6 @@ Made by [Tony](https://itony.net)
 [codecov-image]: https://codecov.io/gh/tonyc726/china-id-card/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/tonyc726/china-id-card
 [download-image]: https://img.shields.io/npm/dm/china-id-card?style=flat-square
-[download-url]: https://npmjs.org/package/china-id-card
 [bundlephobia-image]: https://img.shields.io/bundlephobia/minzip/china-id-card?style=flat-square
 [bundlephobia-url]: https://bundlephobia.com/package/china-id-card
 [license-image]: https://img.shields.io/github/license/tonyc726/china-id-card?style=flat-square
