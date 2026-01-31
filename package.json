@@ -100,6 +100,11 @@
       "git add"
     ]
   },
+  "pnpm": {
+    "overrides": {
+      "@conventional-changelog/git-client": "^2.5.1"
+    }
+  },
   "prettier": {
     "trailingComma": "es5",
     "singleQuote": true,
