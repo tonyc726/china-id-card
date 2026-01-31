@@ -45,10 +45,10 @@ export const getCheckCode = (id: string): string | null => {
   if (!/^\d{17}$/.test(masterCode)) return null;
 
   const sum = masterCode.split('').reduce((acc, char, i) => {
-    return acc + parseInt(char, 10) * (WEIGHTING_MAP[i] ?? 0);
+    return acc + parseInt(char, 10) * WEIGHTING_MAP[i]!;
   }, 0);
 
-  return CHECK_CODE_MAP[sum % 11] ?? null;
+  return CHECK_CODE_MAP[sum % 11]!;
 };
 
 /**
@@ -63,10 +63,10 @@ export const toEighteen = (id: string): string | null => {
   const seventeen = `${addressCode}19${year}${monthDayOrder}`;
 
   const sum = seventeen.split('').reduce((acc, char, i) => {
-    return acc + parseInt(char, 10) * (WEIGHTING_MAP[i] ?? 0);
+    return acc + parseInt(char, 10) * WEIGHTING_MAP[i]!;
   }, 0);
 
-  const checkCode = CHECK_CODE_MAP[sum % 11] ?? '1';
+  const checkCode = CHECK_CODE_MAP[sum % 11]!;
   return `${seventeen}${checkCode}`;
 };
 

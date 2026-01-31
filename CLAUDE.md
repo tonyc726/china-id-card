@@ -9,35 +9,61 @@ A Chinese Citizen ID Card validation library implementing GB 11643-1999 national
 ## Commands
 
 ```bash
-# Build all formats (CJS, AMD, minified)
+# Build all formats (ES, CJS, UMD) + TypeScript declarations
 npm run build
 
-# Run Jest tests
+# Run Vitest tests
 npm run test
 
 # Run ESLint
 npm run lint
 
-# Build specific format
-npm run rollup:cjs      # CommonJS
-npm run rollup:amd      # AMD (browser)
-npm run rollup:cjs-min  # Minified CJS
-npm run rollup:amd-min  # Minified AMD
+# Type check
+npm run typecheck
+
+# Format with Prettier
+npm run format
+
+# Run tests with coverage
+npm run test
+
+# Documentation
+npm run docs:dev     # VitePress dev server
+npm run docs:build   # Build VitePress docs
 ```
 
 ## Architecture
 
-Single-file utility library with functional helpers and a validation class:
+Single-file utility library at `src/index.ts` with functional exports:
 
-- **Constants**: `CHECK_CODE_MAP`, `WEIGHTING_MAP` (GB 11643-1999 algorithm)
-- **Helpers**: `checkBaseFormat`, `checkProvince`, `checkBirthday`, `getCheckCode`, `tranformEighteen`
-- **Main export**: `IDCard` class - validates ID and exposes `isVerified`, `getMasterCode()`, `getCheckCode()`
+**Constants:**
+- `CHECK_CODE_MAP` - Check code result mapping
+- `WEIGHTING_MAP` - GB 11643-1999 weighting factors
+- `PROVINCE_MAP` - Province code to name mapping
 
-Output formats: ES6, CommonJS, AMD (via Rollup).
+**Exports:**
+- `isValid(id)` - Quick validation
+- `parse(id)` - Full ID info (isValid, province, birthDate, gender, age, etc.)
+- `mask(id)` - Mask sensitive ID (shows first 3 and last 4 digits)
+- `toEighteen(id)` - Convert 15-digit to 18-digit
+- `getCheckCode(id)` - Calculate check digit
+- `checkBaseFormat(id)` - Validate format (length, characters)
+- `checkProvince(id)` - Validate province code
+
+**Build Output:**
+- ES module: `dist/index.es.js`
+- CommonJS: `dist/index.cjs.js`
+- UMD: `dist/index.umd.js`
+- Types: `dist/index.d.ts`
 
 ## Code Style
 
-- ES6+ JavaScript (no TypeScript)
-- ESLint with airbnb-base config + Prettier
+- TypeScript with strict mode
+- ESLint with typescript-eslint + Prettier
 - JSDoc comments for functions
-- Commit messages via `cz-conventional-changelog` (run `git cz` instead of `git commit`)
+- 0 dependencies
+
+## Release
+
+- Semantic-release for automated releases
+- Husky pre-commit (lint-staged) and pre-push (lint + typecheck) hooks

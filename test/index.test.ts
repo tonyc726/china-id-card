@@ -75,6 +75,11 @@ describe('getCheckCode', () => {
   it('should return null for non-numeric characters', () => {
     expect(getCheckCode('31000019abc276323')).toBeNull();
   });
+
+  it('should calculate sum correctly for all 9s', () => {
+    // All 9s will exercise all branches of the reduce calculation
+    expect(getCheckCode('99999999999999999')).toBe('3');
+  });
 });
 
 // ==================== toEighteen ====================
@@ -97,6 +102,11 @@ describe('toEighteen', () => {
 
   it('should return null for empty string', () => {
     expect(toEighteen('')).toBeNull();
+  });
+
+  it('should calculate check code correctly for all 9s prefix', () => {
+    // Exercise all branches of the reduce calculation
+    expect(toEighteen('999999990123456')).toBe('999999199901234568');
   });
 });
 
@@ -128,6 +138,11 @@ describe('mask', () => {
 
   it('should return Invalid ID when toEighteen returns null', () => {
     expect(mask('31abc08102276321')).toBe('Invalid ID');
+  });
+
+  it('should return Invalid ID for 15-digit format with non-numeric chars', () => {
+    // This triggers the toEighteen null branch in mask (line 86)
+    expect(mask('31abc0810227632')).toBe('Invalid ID');
   });
 });
 
