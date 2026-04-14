@@ -218,6 +218,29 @@ describe('parse', () => {
     expect(result.isValid).toBe(true);
     expect(result.province).toBe('上海市');
   });
+
+  it('should return invalid result for month 00', () => {
+    // 出生日期月份为 00
+    const result = parse('310000199900126323');
+    expect(result.isValid).toBe(false);
+    expect(result.birthDate).toBe('');
+  });
+
+  it('should return invalid result for month 13', () => {
+    const result = parse('310000199913276323');
+    expect(result.isValid).toBe(false);
+  });
+
+  it('should return invalid result for day 31 in 30-day month', () => {
+    // 1999-11 只有 30 天，31 是非法的
+    const result = parse('310000199911316323');
+    expect(result.isValid).toBe(false);
+  });
+
+  it('should return invalid result for Feb 30', () => {
+    const result = parse('310000199902306323');
+    expect(result.isValid).toBe(false);
+  });
 });
 
 // ==================== isValid ====================

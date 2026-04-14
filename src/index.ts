@@ -12,7 +12,7 @@ const CHECK_CODE_MAP = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'] a
 const WEIGHTING_MAP = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1] as const;
 
 /** 省份映射表 */
-const PROVINCE_MAP: Record<string, string> = {
+export const PROVINCE_MAP: Record<string, string> = {
   '11': '北京市', '12': '天津市', '13': '河北省', '14': '山西省', '15': '内蒙古自治区',
   '21': '辽宁省', '22': '吉林省', '23': '黑龙江省',
   '31': '上海市', '32': '江苏省', '33': '浙江省', '34': '安徽省', '35': '福建省', '36': '江西省', '37': '山东省',
@@ -22,51 +22,55 @@ const PROVINCE_MAP: Record<string, string> = {
   '71': '台湾省', '81': '香港特别行政区', '82': '澳门特别行政区',
 };
 
+const VALID_PROVINCE_CODES = new Set(Object.keys(PROVINCE_MAP));
+
 /**
  * 检验身份证基本格式
  */
 export const checkBaseFormat = (id: string): boolean => {
-  return /(^\d{15}$)|(^\d{17}(\d|X)$)/i.test(id);
+  const s = String(id);
+  return /^\d{15}$/.test(s) || /^\d{17}[\dXx]$/.test(s);
 };
 
 /**
  * 检验省份代码是否有效
  */
 export const checkProvince = (id: string): boolean => {
-  const code = id.slice(0, 2);
-  return /^(11|12|13|14|15|21|22|23|31|32|33|34|35|36|37|41|42|43|44|45|46|50|51|52|53|54|61|62|63|64|65|71|81|82)/.test(code);
+  return VALID_PROVINCE_CODES.has(String(id).slice(0, 2));
 };
 
 /**
  * 计算校验码
  */
 export const getCheckCode = (id: string): string | null => {
-  const masterCode = id.slice(0, 17);
+  const masterCode = String(id).slice(0, 17);
   if (!/^\d{17}$/.test(masterCode)) return null;
 
   const sum = masterCode.split('').reduce((acc, char, i) => {
     return acc + parseInt(char, 10) * WEIGHTING_MAP[i]!;
   }, 0);
 
-  return CHECK_CODE_MAP[sum % 11]!;
+  return CHECK_CODE_MAP[sum % 11] ?? null;
 };
 
 /**
  * 15位身份证转18位
  */
 export const toEighteen = (id: string): string | null => {
-  if (!/^\d{15}$/.test(id)) return null;
+  const masterCode = String(id);
+  if (!/^\d{15}$/.test(masterCode)) return null;
 
-  const addressCode = id.slice(0, 6);
-  const year = id.slice(6, 8);
-  const monthDayOrder = id.slice(8);
+  const addressCode = masterCode.slice(0, 6);
+  const year = masterCode.slice(6, 8);
+  const monthDayOrder = masterCode.slice(8);
   const seventeen = `${addressCode}19${year}${monthDayOrder}`;
 
   const sum = seventeen.split('').reduce((acc, char, i) => {
     return acc + parseInt(char, 10) * WEIGHTING_MAP[i]!;
   }, 0);
 
-  const checkCode = CHECK_CODE_MAP[sum % 11]!;
+  const checkCode = CHECK_CODE_MAP[sum % 11] ?? null;
+  if (!checkCode) return null;
   return `${seventeen}${checkCode}`;
 };
 
@@ -102,6 +106,23 @@ export interface IDCardInfo {
   eighteenDigit: string | null;
 }
 
+/**
+ * 快速验证身份证是否有效
+ */
+export const isValid = (id: string): boolean => {
+  return parse(id).isValid;
+};
+
+/** 检查今年生日是否已过 */
+const hasBirthdayPassedThisYear = (birthDate: Date): boolean => {
+  const today = new Date();
+  const thisYearBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+  return today >= thisYearBirthday;
+};
+
+/**
+ * 解析身份证信息
+ */
 export const parse = (id: string): IDCardInfo => {
   const idStr = String(id);
   const isFifteen = idStr.length === 15;
@@ -123,11 +144,31 @@ export const parse = (id: string): IDCardInfo => {
   const year = parseInt(isFifteen ? `19${idStr.slice(6, 8)}` : idStr.slice(6, 10), 10);
   const month = parseInt(isFifteen ? idStr.slice(8, 10) : idStr.slice(10, 12), 10);
   const day = parseInt(isFifteen ? idStr.slice(10, 12) : idStr.slice(12, 14), 10);
+
+  // 校验出生日期合法性（月份和日期范围）
+  const maxDay = new Date(year, month, 0).getDate();
+  if (month < 1 || month > 12 || day < 1 || day > maxDay) {
+    return {
+      isValid: false,
+      provinceCode: '',
+      province: '',
+      birthDate: '',
+      gender: 'male',
+      age: 0,
+      fifteenDigit: null,
+      eighteenDigit: null,
+    };
+  }
+
   const orderCode = isFifteen ? idStr.slice(12, 15) : idStr.slice(14, 17);
   const genderCode = parseInt(orderCode, 10) % 2;
 
+  const birthDate = new Date(year, month - 1, day);
   const currentYear = new Date().getFullYear();
-  const age = currentYear - year;
+  let age = currentYear - year;
+  if (!hasBirthdayPassedThisYear(birthDate)) {
+    age -= 1;
+  }
 
   const eighteenDigit = isFifteen ? toEighteen(idStr) : idStr;
 
@@ -135,7 +176,7 @@ export const parse = (id: string): IDCardInfo => {
   if (isFifteen) {
     isValid = isValid && eighteenDigit !== null;
   } else {
-    isValid = isValid && getCheckCode(idStr) === idStr[17];
+    isValid = isValid && getCheckCode(idStr) === idStr[17]?.toUpperCase();
   }
 
   return {
@@ -148,11 +189,4 @@ export const parse = (id: string): IDCardInfo => {
     fifteenDigit: isFifteen ? idStr : null,
     eighteenDigit: isFifteen ? eighteenDigit : idStr,
   };
-};
-
-/**
- * 快速验证身份证是否有效
- */
-export const isValid = (id: string): boolean => {
-  return parse(id).isValid;
 };
