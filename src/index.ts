@@ -50,7 +50,7 @@ export const getCheckCode = (id: string): string | null => {
     return acc + parseInt(char, 10) * WEIGHTING_MAP[i]!;
   }, 0);
 
-  return CHECK_CODE_MAP[sum % 11] ?? null;
+  return CHECK_CODE_MAP[sum % 11] ?? /* istanbul ignore next */ null;
 };
 
 /**
@@ -69,8 +69,8 @@ export const toEighteen = (id: string): string | null => {
     return acc + parseInt(char, 10) * WEIGHTING_MAP[i]!;
   }, 0);
 
-  const checkCode = CHECK_CODE_MAP[sum % 11] ?? null;
-  if (!checkCode) return null;
+  const checkCode = CHECK_CODE_MAP[sum % 11] ?? /* istanbul ignore next */ null;
+  if (!checkCode) /* istanbul ignore next */ return null;
   return `${seventeen}${checkCode}`;
 };
 
