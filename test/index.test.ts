@@ -241,6 +241,22 @@ describe('parse', () => {
     const result = parse('310000199902306323');
     expect(result.isValid).toBe(false);
   });
+
+  it('should compute age precisely using fake timers (birthday not passed)', () => {
+    // ID: born Dec 31, 2000 — check digit for 31000020001231001 is 4
+    const id = '310000200012310014';
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-04-14'));
+    // Apr 14 < Dec 31 this year → birthday not passed → age = 2026-2000-1 = 25
+    const result = parse(id);
+    expect(result.isValid).toBe(true);
+    expect(result.birthDate).toBe('2000-12-31');
+    expect(result.age).toBe(25);
+    // Advance to after birthday: age should be 26
+    vi.setSystemTime(new Date('2027-01-02'));
+    expect(parse(id).age).toBe(26);
+    vi.useRealTimers();
+  });
 });
 
 // ==================== isValid ====================
