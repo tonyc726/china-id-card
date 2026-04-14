@@ -113,8 +113,9 @@ export const isValid = (id: string): boolean => {
   return parse(id).isValid;
 };
 
-/** 检查今年生日是否已过 */
-const hasBirthdayPassedThisYear = (birthDate: Date): boolean => {
+/** 检查今年生日是否已过（仅供测试，外部不可依赖此函数） */
+// Intentionally unexported: internal helper, do not expose
+const _hasBirthdayPassedThisYear = (birthDate: Date): boolean => {
   const today = new Date();
   const thisYearBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
   return today >= thisYearBirthday;
@@ -166,7 +167,7 @@ export const parse = (id: string): IDCardInfo => {
   const birthDate = new Date(year, month - 1, day);
   const currentYear = new Date().getFullYear();
   let age = currentYear - year;
-  if (!hasBirthdayPassedThisYear(birthDate)) {
+  if (!_hasBirthdayPassedThisYear(birthDate)) {
     age -= 1;
   }
 
