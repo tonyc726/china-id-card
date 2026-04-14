@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/tonyc726/china-id-card/compare/v2.2.2...v2.2.3) (2026-04-14)
+
+
+### Bug Fixes
+
+* validate birth date, precise age, export PROVINCE_MAP, optimize checkProvince with Set ([f50874b](https://github.com/tonyc726/china-id-card/commit/f50874ba2dcf37d32de3e1573669056c41dcdbea))
+
 ## [2.2.2](https://github.com/tonyc726/china-id-card/compare/v2.2.1...v2.2.2) (2026-04-14)
 
 

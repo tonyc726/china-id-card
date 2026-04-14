@@ -65,24 +65,28 @@ var e = [
 	71: "台湾省",
 	81: "香港特别行政区",
 	82: "澳门特别行政区"
-}, r = (e) => /(^\d{15}$)|(^\d{17}(\d|X)$)/i.test(e), i = (e) => {
-	let t = e.slice(0, 2);
-	return /^(11|12|13|14|15|21|22|23|31|32|33|34|35|36|37|41|42|43|44|45|46|50|51|52|53|54|61|62|63|64|65|71|81|82)/.test(t);
-}, a = (n) => {
-	let r = n.slice(0, 17);
-	return /^\d{17}$/.test(r) ? e[r.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] : null;
-}, o = (n) => {
-	if (!/^\d{15}$/.test(n)) return null;
-	let r = `${n.slice(0, 6)}19${n.slice(6, 8)}${n.slice(8)}`;
-	return `${r}${e[r.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11]}`;
-}, s = (e) => {
+}, r = new Set(Object.keys(n)), i = (e) => {
+	let t = String(e);
+	return /^\d{15}$/.test(t) || /^\d{17}[\dXx]$/.test(t);
+}, a = (e) => r.has(String(e).slice(0, 2)), o = (n) => {
+	let r = String(n).slice(0, 17);
+	return /^\d{17}$/.test(r) ? e[r.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] ?? null : null;
+}, s = (n) => {
+	let r = String(n);
+	if (!/^\d{15}$/.test(r)) return null;
+	let i = `${r.slice(0, 6)}19${r.slice(6, 8)}${r.slice(8)}`, a = e[i.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] ?? null;
+	return a ? `${i}${a}` : null;
+}, c = (e) => {
 	let t = String(e), n = t.length === 15, r = t.length === 18;
 	if (!n && !r) return "Invalid ID";
-	let i = n ? o(t) : t;
+	let i = n ? s(t) : t;
 	return i ? `${i.slice(0, 3)}***********${i.slice(-4)}` : "Invalid ID";
-}, c = (e) => {
-	let t = String(e), s = t.length === 15;
-	if (!r(t)) return {
+}, l = (e) => d(e).isValid, u = (e) => {
+	let t = /* @__PURE__ */ new Date();
+	return t >= new Date(t.getFullYear(), e.getMonth(), e.getDate());
+}, d = (e) => {
+	let t = String(e), r = t.length === 15;
+	if (!i(t)) return {
 		isValid: !1,
 		provinceCode: "",
 		province: "",
@@ -92,17 +96,30 @@ var e = [
 		fifteenDigit: null,
 		eighteenDigit: null
 	};
-	let c = t.slice(0, 2), l = parseInt(s ? `19${t.slice(6, 8)}` : t.slice(6, 10), 10), u = parseInt(s ? t.slice(8, 10) : t.slice(10, 12), 10), d = parseInt(s ? t.slice(10, 12) : t.slice(12, 14), 10), f = s ? t.slice(12, 15) : t.slice(14, 17), p = parseInt(f, 10) % 2, m = (/* @__PURE__ */ new Date()).getFullYear() - l, h = s ? o(t) : t, g = i(t);
-	return s ? g &&= h !== null : g &&= a(t) === t[17], {
-		isValid: g,
+	let c = t.slice(0, 2), l = parseInt(r ? `19${t.slice(6, 8)}` : t.slice(6, 10), 10), d = parseInt(r ? t.slice(8, 10) : t.slice(10, 12), 10), f = parseInt(r ? t.slice(10, 12) : t.slice(12, 14), 10), p = new Date(l, d, 0).getDate();
+	if (d < 1 || d > 12 || f < 1 || f > p) return {
+		isValid: !1,
+		provinceCode: "",
+		province: "",
+		birthDate: "",
+		gender: "male",
+		age: 0,
+		fifteenDigit: null,
+		eighteenDigit: null
+	};
+	let m = r ? t.slice(12, 15) : t.slice(14, 17), h = parseInt(m, 10) % 2, g = new Date(l, d - 1, f), _ = (/* @__PURE__ */ new Date()).getFullYear() - l;
+	u(g) || --_;
+	let v = r ? s(t) : t, y = a(t);
+	return r ? y &&= v !== null : y &&= o(t) === t[17]?.toUpperCase(), {
+		isValid: y,
 		provinceCode: c,
 		province: n[c] || "",
-		birthDate: `${l}-${String(u).padStart(2, "0")}-${String(d).padStart(2, "0")}`,
-		gender: p === 1 ? "male" : "female",
-		age: m,
-		fifteenDigit: s ? t : null,
-		eighteenDigit: s ? h : t
+		birthDate: `${l}-${String(d).padStart(2, "0")}-${String(f).padStart(2, "0")}`,
+		gender: h === 1 ? "male" : "female",
+		age: _,
+		fifteenDigit: r ? t : null,
+		eighteenDigit: r ? v : t
 	};
-}, l = (e) => c(e).isValid;
+};
 //#endregion
-export { r as checkBaseFormat, i as checkProvince, a as getCheckCode, l as isValid, s as mask, c as parse, o as toEighteen };
+export { n as PROVINCE_MAP, i as checkBaseFormat, a as checkProvince, o as getCheckCode, l as isValid, c as mask, d as parse, s as toEighteen };
