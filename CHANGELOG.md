@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/tonyc726/china-id-card/compare/v2.2.1...v2.2.2) (2026-04-14)
+
+
+### Bug Fixes
+
+* upgrade vite to latest (bundles fixed esbuild) ([#36](https://github.com/tonyc726/china-id-card/issues/36)) ([4855694](https://github.com/tonyc726/china-id-card/commit/4855694882ff5d0d587f349e22ffb4124389286b))
+
 ## [2.2.1](https://github.com/tonyc726/china-id-card/compare/v2.2.0...v2.2.1) (2026-01-31)
 
 
