@@ -130,6 +130,7 @@
       "picomatch@>=4": "4.0.4",
       "brace-expansion@<2": "1.1.16",
       "brace-expansion@>=2": "2.1.2",
+      "vite@5": "6.4.3",
       "undici@<7": "6.27.0",
       "undici@>=7": "7.28.0"
     }
