@@ -77,7 +77,7 @@ export function initIsValidDemo(lang) {
     const valid = chinaIdCard.isValid(input.value)
     result.style.display = 'block'
     value.textContent = valid ? texts.valid : texts.invalid
-    value.style.color = valid ? '#0fa336' : '#e22718'
+    value.style.color = valid ? '#10b981' : '#ef4444'
   })
 
   input.value = generateRandomId()

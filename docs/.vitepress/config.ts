@@ -15,7 +15,7 @@ export default defineConfig({
   description: DESC_ZH,
   lang: 'zh-CN',
   lastUpdated: true,
-  appearance: 'force-dark',
+  appearance: 'light',
   base: BASE,
   outDir: '../pages',
   sitemap: {
@@ -29,7 +29,7 @@ export default defineConfig({
       'link',
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'
       }
     ],
     ['meta', { name: 'keywords', content: '身份证号码,身份证验证,GB 11643,china id card,id card validation,身份证脱敏,15位身份证转18位' }],
