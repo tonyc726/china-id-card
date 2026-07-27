@@ -1,7 +1,8 @@
 <div align="center">
   <img src="logo.png" alt="China ID Card" width="120" />
   <h1><a href="https://tonyc726.github.io/china-id-card">China ID Card</a></h1>
-  <p>A Chinese Citizen identification number validation library based on GB 11643-1999</p>
+  <p>A Chinese citizen identification number validation library based on GB 11643-1999</p>
+  <p>0 dependencies · TypeScript · 15/18-digit compatible · Works everywhere</p>
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
@@ -10,7 +11,7 @@
 [![Size][bundlephobia-image]][bundlephobia-url]
 [![license][license-image]][license-url]
 
-简体中文 | [English](README_EN.md)
+**[📖 Documentation](https://tonyc726.github.io/china-id-card)** · **[🎯 Live Demo](https://tonyc726.github.io/china-id-card/playground)** · **[🐛 Issues](https://github.com/tonyc726/china-id-card/issues)**
 
 [简体中文](README.md) | English
 
@@ -31,7 +32,14 @@
 ## Installation
 
 ```bash
+# pnpm
 pnpm add china-id-card
+
+# npm
+npm install china-id-card
+
+# yarn
+yarn add china-id-card
 ```
 
 ## Quick Start
@@ -49,6 +57,21 @@ isValid('622922197808118498'); // → true
 // Mask sensitive data
 mask('622922197808118498'); // → '622***********8498'
 ```
+
+Use directly in the browser (UMD):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/china-id-card/dist/index.umd.js"></script>
+<script>
+  window.chinaIdCard.isValid('622922197808118498'); // → true
+</script>
+```
+
+## Live Demo
+
+Validate and parse Chinese ID numbers right in your browser — all computation stays local:
+
+👉 **<https://tonyc726.github.io/china-id-card/playground>**
 
 ## API Reference
 
@@ -83,6 +106,8 @@ interface IDCardInfo {
   eighteenDigit: string | null; // 18-digit ID
 }
 ```
+
+Full API documentation with interactive demos: <https://tonyc726.github.io/china-id-card/api/isValid>
 
 ## License
 
