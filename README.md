@@ -2,6 +2,7 @@
   <img src="logo.png" alt="China ID Card" width="120" />
   <h1><a href="https://tonyc726.github.io/china-id-card">China ID Card</a></h1>
   <p>基于 GB 11643-1999 标准的中华人民共和国公民身份号码验证工具库</p>
+  <p>0 依赖 · TypeScript · 15/18 位全兼容 · 全端可用</p>
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
@@ -9,6 +10,8 @@
 [![NPM downloads][download-image]][npm-url]
 [![Size][bundlephobia-image]][bundlephobia-url]
 [![license][license-image]][license-url]
+
+**[📖 文档](https://tonyc726.github.io/china-id-card)** · **[🎯 在线体验](https://tonyc726.github.io/china-id-card/playground)** · **[🐛 问题反馈](https://github.com/tonyc726/china-id-card/issues)**
 
 简体中文 | [English](README_EN.md)
 
@@ -29,7 +32,14 @@
 ## 安装
 
 ```bash
+# pnpm
 pnpm add china-id-card
+
+# npm
+npm install china-id-card
+
+# yarn
+yarn add china-id-card
 ```
 
 ## 快速开始
@@ -47,6 +57,21 @@ isValid('622922197808118498'); // → true
 // 脱敏处理
 mask('622922197808118498'); // → '622***********8498'
 ```
+
+浏览器直接使用（UMD）：
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/china-id-card/dist/index.umd.js"></script>
+<script>
+  window.chinaIdCard.isValid('622922197808118498'); // → true
+</script>
+```
+
+## 在线体验
+
+无需安装，直接在浏览器中验证和解析身份证号码（所有计算均在本地完成）：
+
+👉 **<https://tonyc726.github.io/china-id-card/playground>**
 
 ## API 参考
 
@@ -81,6 +106,8 @@ interface IDCardInfo {
   eighteenDigit: string | null; // 18位身份证
 }
 ```
+
+完整 API 文档与交互式演示：<https://tonyc726.github.io/china-id-card/api/isValid>
 
 ## 许可证
 

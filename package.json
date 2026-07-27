@@ -8,7 +8,16 @@
   "keywords": [
     "china",
     "id card",
-    "GB11643-1999"
+    "id-card",
+    "identity",
+    "identity-card",
+    "validation",
+    "validator",
+    "GB11643-1999",
+    "身份证",
+    "身份证号码",
+    "身份证验证",
+    "身份证脱敏"
   ],
   "engines": {
     "node": ">=18"

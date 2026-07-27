@@ -63,6 +63,11 @@ Single-file utility library at `src/index.ts` with functional exports:
 - JSDoc comments for functions
 - 0 dependencies
 
+## Docs Site UI
+
+- All UI changes to `docs/` MUST follow `DESIGN.md` (BMW M design system: pure black canvas, white UPPERCASE display type, zero border-radius, M tricolor as brand marker only)
+- Theming is done via CSS variable overrides in `docs/.vitepress/theme/custom.css` — never inline hex colors outside the token layer
+
 ## Release
 
 - Semantic-release for automated releases

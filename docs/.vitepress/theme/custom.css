@@ -1,7 +1,175 @@
-/* Demo styles for ID Card Validator */
+/**
+ * Design tokens — driven by DESIGN.md (Cal.com design system).
+ * Clean white canvas, black primary CTAs, Inter + Cal Sans display,
+ * soft rounded cards (~8–12 px), friendly modern SaaS voice.
+ * Any UI change on this site MUST stay consistent with /DESIGN.md.
+ */
+
+/* ---------- Token layer ---------- */
+
+:root {
+  /* Primary action: near-black ink */
+  --vp-c-brand-1: #111111;
+  --vp-c-brand-2: #242424;
+  --vp-c-brand-3: #111111;
+  --vp-c-brand-soft: rgba(17, 17, 17, 0.08);
+
+  /* Light canvas & soft surfaces */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f8f9fa;
+  --vp-c-bg-soft: #f5f5f5;
+  --vp-c-bg-elv: #ffffff;
+
+  /* Hairlines */
+  --vp-c-divider: #e5e7eb;
+  --vp-c-border: #e5e7eb;
+  --vp-c-gutter: #f3f4f6;
+
+  /* Text: ink → body → muted */
+  --vp-c-text-1: #111111;
+  --vp-c-text-2: #374151;
+  --vp-c-text-3: #6b7280;
+
+  /* Semantic */
+  --vp-c-success-1: #10b981;
+  --vp-c-danger-1: #ef4444;
+  --vp-c-warning-1: #f59e0b;
+
+  /* Typography: Inter for UI + body, Cal Sans unavailable — approximated by Inter 600 */
+  --vp-font-family-base:
+    'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vp-font-family-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Hero: solid ink, no gradient */
+  --vp-home-hero-name-color: #111111;
+  --vp-home-hero-name-background: none;
+
+  /* Primary button: black fill, white text */
+  --vp-button-brand-border: #111111;
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-bg: #111111;
+  --vp-button-brand-hover-border: #242424;
+  --vp-button-brand-hover-text: #ffffff;
+  --vp-button-brand-hover-bg: #242424;
+  --vp-button-brand-active-border: #242424;
+  --vp-button-brand-active-text: #ffffff;
+  --vp-button-brand-active-bg: #242424;
+
+  /* Alt button: white fill, hairline border */
+  --vp-button-alt-border: #e5e7eb;
+  --vp-button-alt-text: #111111;
+  --vp-button-alt-bg: #ffffff;
+  --vp-button-alt-hover-border: #111111;
+  --vp-button-alt-hover-text: #111111;
+  --vp-button-alt-hover-bg: #f8f9fa;
+  --vp-button-alt-active-border: #111111;
+  --vp-button-alt-active-text: #111111;
+  --vp-button-alt-active-bg: #f5f5f5;
+
+  /* Code blocks sit on a soft surface */
+  --vp-code-bg: #f5f5f5;
+  --vp-code-color: #111111;
+}
+
+/* ---------- Typography layer ---------- */
+
+/* Display headlines: weight 600, tight tracking (Cal Sans approximation) */
+.VPHero .name,
+.VPHero .text,
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.vp-doc {
+  font-weight: 400;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc strong {
+  color: var(--vp-c-text-1);
+  font-weight: 600;
+}
+
+.vp-doc h1 {
+  font-size: 2.25em;
+  line-height: 1.1;
+}
+
+.vp-doc h2 {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2.5rem;
+  font-size: 1.65em;
+  line-height: 1.2;
+}
+
+.vp-doc h3 {
+  font-size: 1.25em;
+  margin-top: 2rem;
+}
+
+/* ---------- Component layer ---------- */
+
+/* Buttons: friendly SaaS radius, confident weight-600 labels */
+body .VPButton {
+  border-radius: 8px !important;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Feature cards: light-gray surface, 12 px radius, no border */
+body .VPFeature {
+  background-color: var(--vp-c-bg-soft) !important;
+  border: none;
+  border-radius: 12px !important;
+  transition: background-color 0.2s;
+}
+
+/* Top nav stays clean white */
+.VPNav {
+  background-color: var(--vp-c-bg);
+}
+
+/* Badge row: shields always on a single line */
+.badge-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-row a {
+  flex-shrink: 0;
+  text-decoration: none;
+  line-height: 0;
+}
+
+/* Inline links: brand accent blue */
+.vp-doc a {
+  color: #3b82f6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(59, 130, 246, 0.35);
+  transition: text-decoration-color 0.15s ease;
+}
+
+.vp-doc a:hover {
+  text-decoration-color: #3b82f6;
+}
+
+/* ---------- Demo styles for ID Card Validator ---------- */
 .demo-container {
   background: var(--vp-c-bg-soft);
-  border-radius: 8px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
   padding: 1.5rem;
   margin: 1rem 0;
 }
@@ -16,61 +184,66 @@
   flex: 1;
   padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
   background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   font-family: var(--vp-font-family-mono);
 }
 
 .demo-input:focus {
-  border-color: var(--vp-c-brand);
+  border-color: #111111;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
 }
 
 .demo-btn {
   padding: 0.625rem 1rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
   white-space: nowrap;
 }
 
+/* Primary demo action: black fill, white text */
 .demo-btn-primary {
-  background: #3b82f6;
-  color: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
 }
 
 .demo-btn-primary:hover {
-  background: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+  background: #242424;
+  border-color: #242424;
 }
 
 .demo-btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: #000000;
+  border-color: #000000;
 }
 
 .demo-btn-secondary {
-  background: var(--vp-c-bg);
+  background: #ffffff;
   color: var(--vp-c-text-1);
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-border);
 }
 
 .demo-btn-secondary:hover {
-  background: var(--vp-c-bg-soft);
-  border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+  border-color: #111111;
+  color: #111111;
 }
 
 .demo-result {
   padding: 0.625rem 0.875rem;
-  border-radius: 6px;
+  border-radius: 8px;
   text-align: center;
   min-width: 120px;
   font-size: 0.875rem;
@@ -78,15 +251,15 @@
 }
 
 .demo-result.success {
-  background: rgba(80, 227, 194, 0.15);
-  color: #0d9488;
-  border: 1px solid rgba(80, 227, 194, 0.3);
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .demo-result.error {
-  background: rgba(244, 63, 94, 0.15);
-  color: #f43f5e;
-  border: 1px solid rgba(244, 63, 94, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .demo-info-grid {
@@ -98,14 +271,18 @@
 
 .demo-info-card {
   background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
   padding: 0.875rem;
-  border-radius: 6px;
+  border-radius: 8px;
   text-align: center;
 }
 
 .demo-info-label {
   font-size: 0.75rem;
-  color: var(--vp-c-text-2);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--vp-c-text-3);
   margin-bottom: 0.25rem;
 }
 
@@ -119,21 +296,87 @@
   width: 100%;
   padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
   background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
   margin-top: 0.75rem;
   font-family: var(--vp-font-family-mono);
 }
 
 .demo-result-input.success {
-  background: rgba(80, 227, 194, 0.08);
-  border-color: rgba(80, 227, 194, 0.3);
-  color: #0d9488;
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
 }
 
 .demo-result-input.error {
-  background: rgba(244, 63, 94, 0.08);
-  border-color: rgba(244, 63, 94, 0.3);
-  color: #f43f5e;
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* ---------- Playground page ---------- */
+.pg-container {
+  padding: 1.5rem;
+}
+
+.pg-status {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  min-height: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pg-status.pg-valid {
+  color: #10b981;
+}
+
+.pg-status.pg-invalid {
+  color: #ef4444;
+}
+
+.pg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.pg-mono {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8125rem;
+  word-break: break-all;
+}
+
+.pg-wide {
+  grid-column: 1 / -1;
+}
+
+.pg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.pg-chip {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  font-family: var(--vp-font-family-mono);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 9999px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.pg-chip:hover {
+  border-color: #111111;
+  color: #111111;
+  background: var(--vp-c-bg-soft);
 }
