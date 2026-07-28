@@ -82,9 +82,10 @@
   --vp-button-alt-active-text: var(--vp-cursor-ink);
   --vp-button-alt-active-bg: var(--vp-cursor-canvas);
 
-  /* Code blocks sit on a white surface */
-  --vp-code-bg: #ffffff;
+  /* Inline code sits on a soft warm tint; block code gets its own surface below */
+  --vp-code-bg: #efeee8;
   --vp-code-color: var(--vp-cursor-ink);
+  --vp-code-block-bg: #ffffff;
 
   /* Demo surface tokens */
   --vp-demo-input-focus-shadow: rgba(38, 37, 30, 0.08);
@@ -121,7 +122,8 @@
   --vp-button-alt-hover-bg: #26251e;
   --vp-button-alt-active-bg: #1a1914;
 
-  --vp-code-bg: #26251e;
+  --vp-code-bg: #38362f;
+  --vp-code-block-bg: #26251e;
 
   --vp-demo-input-focus-shadow: rgba(247, 247, 244, 0.08);
   --vp-demo-success-bg: rgba(52, 211, 153, 0.12);
@@ -140,6 +142,11 @@
 .vp-doc h3 {
   font-weight: 400;
   letter-spacing: -0.02em;
+}
+
+/* Hero title: no mid-word CJK breaks — wrap only at the semantic <wbr> point */
+.VPHero .text {
+  word-break: keep-all;
 }
 
 .vp-doc {
@@ -173,7 +180,57 @@
   margin-top: 2rem;
 }
 
+/* Code blocks: DESIGN.md code-block — white card + hairline + 12px radius,
+   clearly separated from the warm cream canvas */
+.vp-doc div[class*='language-'] {
+  background-color: var(--vp-code-block-bg);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+}
+
+.vp-doc div[class*='language-'] pre {
+  background-color: transparent;
+}
+
+/* Code group: tab strip becomes the card header, one unified component */
+.vp-doc .vp-code-group {
+  background-color: var(--vp-code-block-bg);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+}
+
+.vp-doc .vp-code-group .tabs {
+  background-color: transparent;
+  border-bottom: 1px solid var(--vp-c-border);
+  margin: 0;
+  padding: 0 8px;
+  border-radius: 0;
+}
+
+.vp-doc .vp-code-group div[class*='language-'] {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
 /* ---------- Component layer ---------- */
+
+/* Hero visual: purpose-built parsing card, larger than the default icon slot */
+.VPHero .image-bg {
+  display: none;
+}
+
+.VPHero .image-container {
+  max-width: 480px;
+}
+
+body .VPHero .image-src {
+  max-width: 480px !important;
+  max-height: none !important;
+  width: 100%;
+  height: auto;
+}
 
 /* Buttons: compact 8px radius, weight-500 labels */
 body .VPButton {

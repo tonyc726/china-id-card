@@ -10,7 +10,8 @@ hero:
   text: Chinese ID Number Validation
   tagline: Based on GB 11643-1999 · Zero dependencies · TypeScript · 15/18-digit compatible
   image:
-    src: /logo.png
+    light: /hero-card-en.svg
+    dark: /hero-card-en-dark.svg
     alt: China ID Card Validator
   actions:
     - theme: brand

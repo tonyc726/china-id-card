@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="身份证号码解析示意">
+  <!-- Card: white surface, hairline border (Cursor ide-mockup-card) -->
+  <rect x="16" y="20" width="448" height="256" rx="12" fill="#ffffff" stroke="#e6e5e0"/>
+  <!-- Header caption -->
+  <text x="40" y="58" font-family="Inter, system-ui, 'PingFang SC', sans-serif" font-size="11" font-weight="600" letter-spacing="0.88" fill="#807d72">PARSE() · GB 11643-1999</text>
+  <!-- ID number, segmented per GB 11643: 地址码 / 出生日期 / 顺序码 / 校验码 -->
+  <text font-family="'JetBrains Mono', ui-monospace, monospace" font-size="28" fill="#26251e">
+    <tspan x="40" y="104">622922</tspan>
+    <tspan x="159" y="104">19780811</tspan>
+    <tspan x="311" y="104">849</tspan>
+    <tspan x="380" y="104" fill="#f54e00">8</tspan>
+  </text>
+  <!-- Segment underlines -->
+  <rect x="40" y="116" width="101" height="2" rx="1" fill="#26251e" fill-opacity="0.16"/>
+  <rect x="159" y="116" width="134" height="2" rx="1" fill="#26251e" fill-opacity="0.16"/>
+  <rect x="311" y="116" width="50" height="2" rx="1" fill="#26251e" fill-opacity="0.16"/>
+  <rect x="380" y="116" width="17" height="2" rx="1" fill="#f54e00"/>
+  <!-- Segment labels -->
+  <text x="40" y="138" font-family="Inter, system-ui, 'PingFang SC', sans-serif" font-size="11" fill="#807d72">地址码·6</text>
+  <text x="159" y="138" font-family="Inter, system-ui, 'PingFang SC', sans-serif" font-size="11" fill="#807d72">出生日期·8</text>
+  <text x="311" y="138" font-family="Inter, system-ui, 'PingFang SC', sans-serif" font-size="11" fill="#807d72">顺序码·3</text>
+  <text x="380" y="138" font-family="Inter, system-ui, 'PingFang SC', sans-serif" font-size="11" fill="#f54e00">校验码·1</text>
+  <!-- Divider -->
+  <line x1="40" y1="166" x2="440" y2="166" stroke="#efeee8"/>
+  <!-- mask() row -->
+  <text x="40" y="196" font-family="Inter, system-ui, 'PingFang SC', sans-serif" font-size="11" font-weight="600" letter-spacing="0.88" fill="#807d72">MASK()</text>
+  <text x="40" y="228" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="20" fill="#5a5852">622***********8498</text>
+  <!-- Check badge (echoes the logo mark) -->
+  <circle cx="448" cy="260" r="26" fill="#f54e00" stroke="#ffffff" stroke-width="3.5"/>
+  <polyline points="438.4,260 445.4,267 457.6,253" fill="none" stroke="#f7f7f4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
