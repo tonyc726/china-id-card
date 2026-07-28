@@ -1,3 +1,10 @@
+## [2.2.6](https://github.com/tonyc726/china-id-card/compare/v2.2.5...v2.2.6) (2026-07-28)
+
+
+### Bug Fixes
+
+* **deps:** bump lodash and lodash-es overrides to 4.17.23 to resolve CVE-2025-13465 ([00c0d4e](https://github.com/tonyc726/china-id-card/commit/00c0d4e18b2a78162b70b38ee418b0d9571bf51d))
+
 ## [2.2.5](https://github.com/tonyc726/china-id-card/compare/v2.2.4...v2.2.5) (2026-07-28)
 
 
