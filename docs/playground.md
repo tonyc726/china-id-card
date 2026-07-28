@@ -31,11 +31,11 @@ description: 在线验证和解析中国身份证号码 — 实时校验、信�
       <div class="demo-info-label">年龄</div>
       <div class="demo-info-value" id="pgAge">-</div>
     </div>
-    <div class="demo-info-card">
+    <div class="demo-info-card pg-wide-2">
       <div class="demo-info-label">15 位号码</div>
       <div class="demo-info-value pg-mono" id="pgFifteen">-</div>
     </div>
-    <div class="demo-info-card">
+    <div class="demo-info-card pg-wide-2">
       <div class="demo-info-label">18 位号码</div>
       <div class="demo-info-value pg-mono" id="pgEighteen">-</div>
     </div>
