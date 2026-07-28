@@ -10,10 +10,15 @@ import {
   initToEighteenDemo,
   initGetCheckCodeDemo,
   initCheckProvinceDemo,
-  initCheckBaseFormatDemo
+  initCheckBaseFormatDemo,
+  initPlaygroundDemo
 } from './demo'
 
 const route = useRoute()
+
+function currentLang() {
+  return route.path.startsWith('/en/') ? 'en' : 'zh'
+}
 
 function loadChinaIdCardCDN() {
   if (!document.getElementById('china-id-card-cdn')) {
@@ -28,13 +33,16 @@ function loadChinaIdCardCDN() {
 }
 
 function initAllDemos() {
-  initIsValidDemo()
-  initParseDemo()
+  if (typeof chinaIdCard === 'undefined') return
+  const lang = currentLang()
+  initIsValidDemo(lang)
+  initParseDemo(lang)
   initMaskDemo()
-  initToEighteenDemo()
-  initGetCheckCodeDemo()
-  initCheckProvinceDemo()
-  initCheckBaseFormatDemo()
+  initToEighteenDemo(lang)
+  initGetCheckCodeDemo(lang)
+  initCheckProvinceDemo(lang)
+  initCheckBaseFormatDemo(lang)
+  initPlaygroundDemo(lang)
 }
 
 onMounted(() => {
@@ -42,7 +50,7 @@ onMounted(() => {
 })
 
 watch(() => route.path, () => {
-  setTimeout(initAllDemos, 100)
+  setTimeout(loadChinaIdCardCDN, 100)
 })
 </script>
 

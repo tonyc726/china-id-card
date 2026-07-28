@@ -1,3 +1,25 @@
+## [2.2.4](https://github.com/tonyc726/china-id-card/compare/v2.2.3...v2.2.4) (2026-04-14)
+
+
+### Bug Fixes
+
+* drop unnecessary null guard, add precise-age fake-timer test for 100% coverage ([8552066](https://github.com/tonyc726/china-id-card/commit/8552066e4f9ff3b05c57042d94b089a1b85980eb))
+* lower coverage thresholds to match actual unreachable branches ([1c52416](https://github.com/tonyc726/china-id-card/commit/1c52416e5681086d8ae9e127c8c76844500b4eab))
+
+## [2.2.3](https://github.com/tonyc726/china-id-card/compare/v2.2.2...v2.2.3) (2026-04-14)
+
+
+### Bug Fixes
+
+* validate birth date, precise age, export PROVINCE_MAP, optimize checkProvince with Set ([f50874b](https://github.com/tonyc726/china-id-card/commit/f50874ba2dcf37d32de3e1573669056c41dcdbea))
+
+## [2.2.2](https://github.com/tonyc726/china-id-card/compare/v2.2.1...v2.2.2) (2026-04-14)
+
+
+### Bug Fixes
+
+* upgrade vite to latest (bundles fixed esbuild) ([#36](https://github.com/tonyc726/china-id-card/issues/36)) ([4855694](https://github.com/tonyc726/china-id-card/commit/4855694882ff5d0d587f349e22ffb4124389286b))
+
 ## [2.2.1](https://github.com/tonyc726/china-id-card/compare/v2.2.0...v2.2.1) (2026-01-31)
 
 

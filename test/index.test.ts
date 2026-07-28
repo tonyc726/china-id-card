@@ -31,7 +31,7 @@ describe('checkBaseFormat', () => {
   });
 
   it('should handle number input', () => {
-    expect(checkBaseFormat(310000810227632 as unknown)).toBe(true);
+    expect(checkBaseFormat(310000810227632 as unknown as string)).toBe(true);
   });
 });
 
@@ -214,9 +214,48 @@ describe('parse', () => {
   });
 
   it('should handle number input', () => {
-    const result = parse(310000810227632 as unknown);
+    const result = parse(310000810227632 as unknown as string);
     expect(result.isValid).toBe(true);
     expect(result.province).toBe('上海市');
+  });
+
+  it('should return invalid result for month 00', () => {
+    // 出生日期月份为 00
+    const result = parse('310000199900126323');
+    expect(result.isValid).toBe(false);
+    expect(result.birthDate).toBe('');
+  });
+
+  it('should return invalid result for month 13', () => {
+    const result = parse('310000199913276323');
+    expect(result.isValid).toBe(false);
+  });
+
+  it('should return invalid result for day 31 in 30-day month', () => {
+    // 1999-11 只有 30 天，31 是非法的
+    const result = parse('310000199911316323');
+    expect(result.isValid).toBe(false);
+  });
+
+  it('should return invalid result for Feb 30', () => {
+    const result = parse('310000199902306323');
+    expect(result.isValid).toBe(false);
+  });
+
+  it('should compute age precisely using fake timers (birthday not passed)', () => {
+    // ID: born Dec 31, 2000 — check digit for 31000020001231001 is 4
+    const id = '310000200012310014';
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-04-14'));
+    // Apr 14 < Dec 31 this year → birthday not passed → age = 2026-2000-1 = 25
+    const result = parse(id);
+    expect(result.isValid).toBe(true);
+    expect(result.birthDate).toBe('2000-12-31');
+    expect(result.age).toBe(25);
+    // Advance to after birthday: age should be 26
+    vi.setSystemTime(new Date('2027-01-02'));
+    expect(parse(id).age).toBe(26);
+    vi.useRealTimers();
   });
 });
 
@@ -259,6 +298,6 @@ describe('isValid', () => {
   });
 
   it('should handle number input', () => {
-    expect(isValid(310000810227632 as unknown)).toBe(true);
+    expect(isValid(310000810227632 as unknown as string)).toBe(true);
   });
 });

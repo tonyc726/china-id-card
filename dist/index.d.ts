@@ -2,6 +2,8 @@
  * 中国公民身份证号码工具库
  * @see GB 11643-1999
  */
+/** 省份映射表 */
+export declare const PROVINCE_MAP: Record<string, string>;
 /**
  * 检验身份证基本格式
  */
@@ -35,8 +37,11 @@ export interface IDCardInfo {
     fifteenDigit: string | null;
     eighteenDigit: string | null;
 }
-export declare const parse: (id: string) => IDCardInfo;
 /**
  * 快速验证身份证是否有效
  */
 export declare const isValid: (id: string) => boolean;
+/**
+ * 解析身份证信息
+ */
+export declare const parse: (id: string) => IDCardInfo;
