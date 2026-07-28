@@ -22,7 +22,9 @@ export default defineConfig({
     hostname: SITE_URL
   },
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: `${BASE}logo.png` }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${BASE}logo.svg` }],
+    ['link', { rel: 'icon', type: 'image/png', href: `${BASE}favicon.png` }],
+    ['link', { rel: 'apple-touch-icon', href: `${BASE}apple-touch-icon.png` }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     [
@@ -35,9 +37,9 @@ export default defineConfig({
     ['meta', { name: 'keywords', content: '身份证号码,身份证验证,GB 11643,china id card,id card validation,身份证脱敏,15位身份证转18位' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: DEFAULT_TITLE }],
-    ['meta', { property: 'og:image', content: `${SITE_URL}logo.png` }],
-    ['meta', { name: 'twitter:card', content: 'summary' }],
-    ['meta', { name: 'twitter:image', content: `${SITE_URL}logo.png` }]
+    ['meta', { property: 'og:image', content: `${SITE_URL}social-card.png` }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: `${SITE_URL}social-card.png` }]
   ],
   transformHead({ pageData }) {
     const isEn = pageData.relativePath.startsWith('en/')
@@ -114,7 +116,7 @@ export default defineConfig({
   },
   themeConfig: {
     siteTitle: 'China ID Card Validator',
-    logo: '/logo.png',
+    logo: '/logo.svg',
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/' },

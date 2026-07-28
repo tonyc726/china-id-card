@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" alt="China ID Card" width="120" />
+  <img src="https://raw.githubusercontent.com/tonyc726/china-id-card/master/logo.svg" alt="China ID Card" width="120" />
   <h1><a href="https://tonyc726.github.io/china-id-card">China ID Card</a></h1>
   <p>基于 GB 11643-1999 标准的中华人民共和国公民身份号码验证工具库</p>
   <p>0 依赖 · TypeScript · 15/18 位全兼容 · 全端可用</p>

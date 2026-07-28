@@ -1,88 +1,152 @@
 /**
- * Design tokens — driven by DESIGN.md (Cal.com design system).
- * Clean white canvas, black primary CTAs, Inter + Cal Sans display,
- * soft rounded cards (~8–12 px), friendly modern SaaS voice.
+ * Design tokens — driven by DESIGN.md (Cursor design system).
+ * Warm cream editorial canvas (#f7f7f4), warm near-black ink (#26251e),
+ * Cursor Orange (#f54e00) reserved for primary CTAs, CursorGothic approximated
+ * by Inter, JetBrains Mono on every code surface.
  * Any UI change on this site MUST stay consistent with /DESIGN.md.
  */
 
 /* ---------- Token layer ---------- */
 
 :root {
-  /* Primary action: near-black ink */
-  --vp-c-brand-1: #111111;
-  --vp-c-brand-2: #242424;
-  --vp-c-brand-3: #111111;
-  --vp-c-brand-soft: rgba(17, 17, 17, 0.08);
+  /* Cursor semantic primitives */
+  --vp-cursor-ink: #26251e;
+  --vp-cursor-canvas: #f7f7f4;
+  --vp-cursor-canvas-soft: #fafaf7;
+  --vp-cursor-body: #5a5852;
+  --vp-cursor-muted: #807d72;
+  --vp-cursor-hairline: #e6e5e0;
+  --vp-cursor-hairline-strong: #cfcdc4;
+  --vp-cursor-primary: #f54e00;
+  --vp-cursor-primary-active: #d04200;
+  --vp-cursor-success: #1f8a65;
+  --vp-cursor-danger: #cf2d56;
 
-  /* Light canvas & soft surfaces */
-  --vp-c-bg: #ffffff;
-  --vp-c-bg-alt: #f8f9fa;
-  --vp-c-bg-soft: #f5f5f5;
+  /* Primary action: Cursor Orange */
+  --vp-c-brand-1: var(--vp-cursor-primary);
+  --vp-c-brand-2: var(--vp-cursor-primary-active);
+  --vp-c-brand-3: var(--vp-cursor-primary);
+  --vp-c-brand-soft: rgba(245, 78, 0, 0.08);
+
+  /* Warm cream canvas & soft surfaces */
+  --vp-c-bg: var(--vp-cursor-canvas);
+  --vp-c-bg-alt: var(--vp-cursor-canvas-soft);
+  --vp-c-bg-soft: #ffffff;
   --vp-c-bg-elv: #ffffff;
 
   /* Hairlines */
-  --vp-c-divider: #e5e7eb;
-  --vp-c-border: #e5e7eb;
-  --vp-c-gutter: #f3f4f6;
+  --vp-c-divider: var(--vp-cursor-hairline);
+  --vp-c-border: var(--vp-cursor-hairline);
+  --vp-c-gutter: #efeee8;
 
   /* Text: ink → body → muted */
-  --vp-c-text-1: #111111;
-  --vp-c-text-2: #374151;
-  --vp-c-text-3: #6b7280;
+  --vp-c-text-1: var(--vp-cursor-ink);
+  --vp-c-text-2: var(--vp-cursor-body);
+  --vp-c-text-3: var(--vp-cursor-muted);
 
   /* Semantic */
-  --vp-c-success-1: #10b981;
-  --vp-c-danger-1: #ef4444;
-  --vp-c-warning-1: #f59e0b;
+  --vp-c-success-1: var(--vp-cursor-success);
+  --vp-c-danger-1: var(--vp-cursor-danger);
+  --vp-c-warning-1: #c08532;
 
-  /* Typography: Inter for UI + body, Cal Sans unavailable — approximated by Inter 600 */
+  /* Typography: Inter for UI + body, CursorGothic unavailable — approximated by Inter 400/500/600 */
   --vp-font-family-base:
     'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --vp-font-family-mono:
     'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Hero: solid ink, no gradient */
-  --vp-home-hero-name-color: #111111;
+  /* Hero: warm ink, no gradient */
+  --vp-home-hero-name-color: var(--vp-cursor-ink);
   --vp-home-hero-name-background: none;
 
-  /* Primary button: black fill, white text */
-  --vp-button-brand-border: #111111;
+  /* Primary button: Cursor Orange fill, white text */
+  --vp-button-brand-border: var(--vp-cursor-primary);
   --vp-button-brand-text: #ffffff;
-  --vp-button-brand-bg: #111111;
-  --vp-button-brand-hover-border: #242424;
+  --vp-button-brand-bg: var(--vp-cursor-primary);
+  --vp-button-brand-hover-border: var(--vp-cursor-primary-active);
   --vp-button-brand-hover-text: #ffffff;
-  --vp-button-brand-hover-bg: #242424;
-  --vp-button-brand-active-border: #242424;
+  --vp-button-brand-hover-bg: var(--vp-cursor-primary-active);
+  --vp-button-brand-active-border: var(--vp-cursor-primary-active);
   --vp-button-brand-active-text: #ffffff;
-  --vp-button-brand-active-bg: #242424;
+  --vp-button-brand-active-bg: var(--vp-cursor-primary-active);
 
   /* Alt button: white fill, hairline border */
-  --vp-button-alt-border: #e5e7eb;
-  --vp-button-alt-text: #111111;
+  --vp-button-alt-border: var(--vp-cursor-hairline-strong);
+  --vp-button-alt-text: var(--vp-cursor-ink);
   --vp-button-alt-bg: #ffffff;
-  --vp-button-alt-hover-border: #111111;
-  --vp-button-alt-hover-text: #111111;
-  --vp-button-alt-hover-bg: #f8f9fa;
-  --vp-button-alt-active-border: #111111;
-  --vp-button-alt-active-text: #111111;
-  --vp-button-alt-active-bg: #f5f5f5;
+  --vp-button-alt-hover-border: var(--vp-cursor-ink);
+  --vp-button-alt-hover-text: var(--vp-cursor-ink);
+  --vp-button-alt-hover-bg: var(--vp-cursor-canvas-soft);
+  --vp-button-alt-active-border: var(--vp-cursor-ink);
+  --vp-button-alt-active-text: var(--vp-cursor-ink);
+  --vp-button-alt-active-bg: var(--vp-cursor-canvas);
 
-  /* Code blocks sit on a soft surface */
-  --vp-code-bg: #f5f5f5;
-  --vp-code-color: #111111;
+  /* Inline code sits on a soft warm tint; block code gets its own surface below */
+  --vp-code-bg: #efeee8;
+  --vp-code-color: var(--vp-cursor-ink);
+  --vp-code-block-bg: #ffffff;
+
+  /* Demo surface tokens */
+  --vp-demo-input-focus-shadow: rgba(38, 37, 30, 0.08);
+  --vp-demo-success-bg: rgba(31, 138, 101, 0.1);
+  --vp-demo-success-border: rgba(31, 138, 101, 0.3);
+  --vp-demo-error-bg: rgba(207, 45, 86, 0.08);
+  --vp-demo-error-border: rgba(207, 45, 86, 0.3);
+}
+
+/* Dark mode adaptation */
+.dark {
+  --vp-cursor-ink: #f7f7f4;
+  --vp-cursor-canvas: #1a1914;
+  --vp-cursor-canvas-soft: #26251e;
+  --vp-cursor-body: #c9c7bc;
+  --vp-cursor-muted: #8a877d;
+  --vp-cursor-hairline: #3d3b35;
+  --vp-cursor-hairline-strong: #4f4c43;
+  --vp-cursor-primary: #ff6b2c;
+  --vp-cursor-primary-active: #ff844d;
+  --vp-cursor-success: #34d399;
+  --vp-cursor-danger: #f87171;
+
+  --vp-c-bg-soft: #26251e;
+  --vp-c-bg-elv: #26251e;
+
+  --vp-c-brand-soft: rgba(255, 107, 44, 0.15);
+
+  --vp-button-brand-text: #1a1914;
+  --vp-button-brand-hover-text: #1a1914;
+  --vp-button-brand-active-text: #1a1914;
+
+  --vp-button-alt-bg: #1a1914;
+  --vp-button-alt-hover-bg: #26251e;
+  --vp-button-alt-active-bg: #1a1914;
+
+  --vp-code-bg: #38362f;
+  --vp-code-block-bg: #26251e;
+
+  --vp-demo-input-focus-shadow: rgba(247, 247, 244, 0.08);
+  --vp-demo-success-bg: rgba(52, 211, 153, 0.12);
+  --vp-demo-success-border: rgba(52, 211, 153, 0.35);
+  --vp-demo-error-bg: rgba(248, 113, 113, 0.1);
+  --vp-demo-error-border: rgba(248, 113, 113, 0.3);
 }
 
 /* ---------- Typography layer ---------- */
 
-/* Display headlines: weight 600, tight tracking (Cal Sans approximation) */
+/* Display headlines: weight 400, magazine-editorial tracking (CursorGothic approximation) */
 .VPHero .name,
 .VPHero .text,
 .vp-doc h1,
 .vp-doc h2,
 .vp-doc h3 {
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.02em;
+}
+
+/* Hero title: no mid-word CJK breaks — wrap only at the semantic <wbr> point */
+.VPHero .text {
+  word-break: keep-all;
 }
 
 .vp-doc {
@@ -95,7 +159,7 @@
 .vp-doc h3,
 .vp-doc strong {
   color: var(--vp-c-text-1);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .vp-doc h1 {
@@ -116,24 +180,79 @@
   margin-top: 2rem;
 }
 
+/* Code blocks: DESIGN.md code-block — white card + hairline + 12px radius,
+   clearly separated from the warm cream canvas */
+.vp-doc div[class*='language-'] {
+  background-color: var(--vp-code-block-bg);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+}
+
+.vp-doc div[class*='language-'] pre {
+  background-color: transparent;
+}
+
+/* Code group: tab strip becomes the card header, one unified component */
+.vp-doc .vp-code-group {
+  background-color: var(--vp-code-block-bg);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+}
+
+.vp-doc .vp-code-group .tabs {
+  background-color: transparent;
+  border-bottom: 1px solid var(--vp-c-border);
+  margin: 0;
+  padding: 0 8px;
+  border-radius: 0;
+}
+
+.vp-doc .vp-code-group div[class*='language-'] {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
 /* ---------- Component layer ---------- */
 
-/* Buttons: friendly SaaS radius, confident weight-600 labels */
+/* Hero visual: purpose-built parsing card, larger than the default icon slot */
+.VPHero .image-bg {
+  display: none;
+}
+
+.VPHero .image-container {
+  max-width: 480px;
+}
+
+body .VPHero .image-src {
+  max-width: 480px !important;
+  max-height: none !important;
+  width: 100%;
+  height: auto;
+}
+
+/* Buttons: compact 8px radius, weight-500 labels */
 body .VPButton {
   border-radius: 8px !important;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
 }
 
-/* Feature cards: light-gray surface, 12 px radius, no border */
+/* Feature cards: white surface, 12px radius, hairline border */
 body .VPFeature {
   background-color: var(--vp-c-bg-soft) !important;
-  border: none;
+  border: 1px solid var(--vp-c-border);
   border-radius: 12px !important;
   transition: background-color 0.2s;
 }
 
-/* Top nav stays clean white */
+/* Feature icons are SVG images with dark stroke; invert for dark mode readability */
+.dark body .VPFeature .VPImage {
+  filter: invert(1) brightness(1.15);
+}
+
+/* Top nav stays warm cream / dark canvas */
 .VPNav {
   background-color: var(--vp-c-bg);
 }
@@ -152,17 +271,17 @@ body .VPFeature {
   line-height: 0;
 }
 
-/* Inline links: brand accent blue */
+/* Inline links: warm ink / cream */
 .vp-doc a {
-  color: #3b82f6;
+  color: var(--vp-c-text-1);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(59, 130, 246, 0.35);
+  text-decoration-color: color-mix(in srgb, var(--vp-c-text-1) 35%, transparent);
   transition: text-decoration-color 0.15s ease;
 }
 
 .vp-doc a:hover {
-  text-decoration-color: #3b82f6;
+  text-decoration-color: var(--vp-c-text-1);
 }
 
 /* ---------- Demo styles for ID Card Validator ---------- */
@@ -194,14 +313,14 @@ body .VPFeature {
 }
 
 .demo-input:focus {
-  border-color: #111111;
-  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+  border-color: var(--vp-c-text-1);
+  box-shadow: 0 0 0 3px var(--vp-demo-input-focus-shadow);
 }
 
 .demo-btn {
   padding: 0.625rem 1rem;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
   border: none;
   border-radius: 8px;
@@ -213,32 +332,35 @@ body .VPFeature {
   white-space: nowrap;
 }
 
-/* Primary demo action: black fill, white text */
+/* Primary demo action: Cursor Orange fill */
 .demo-btn-primary {
-  background: #111111;
+  background: var(--vp-cursor-primary);
   color: #ffffff;
-  border: 1px solid #111111;
+  border: 1px solid var(--vp-cursor-primary);
+}
+
+.dark .demo-btn-primary {
+  color: #1a1914;
 }
 
 .demo-btn-primary:hover {
-  background: #242424;
-  border-color: #242424;
+  background: var(--vp-cursor-primary-active);
+  border-color: var(--vp-cursor-primary-active);
 }
 
 .demo-btn-primary:active {
-  background: #000000;
-  border-color: #000000;
+  filter: brightness(0.95);
 }
 
 .demo-btn-secondary {
-  background: #ffffff;
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   border: 1px solid var(--vp-c-border);
 }
 
 .demo-btn-secondary:hover {
-  border-color: #111111;
-  color: #111111;
+  border-color: var(--vp-c-text-1);
+  color: var(--vp-c-text-1);
 }
 
 .demo-result {
@@ -251,15 +373,15 @@ body .VPFeature {
 }
 
 .demo-result.success {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: var(--vp-demo-success-bg);
+  color: var(--vp-cursor-success);
+  border: 1px solid var(--vp-demo-success-border);
 }
 
 .demo-result.error {
-  background: rgba(239, 68, 68, 0.08);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: var(--vp-demo-error-bg);
+  color: var(--vp-cursor-danger);
+  border: 1px solid var(--vp-demo-error-border);
 }
 
 .demo-info-grid {
@@ -305,15 +427,15 @@ body .VPFeature {
 }
 
 .demo-result-input.success {
-  background: rgba(16, 185, 129, 0.06);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: #10b981;
+  background: var(--vp-demo-success-bg);
+  border-color: var(--vp-demo-success-border);
+  color: var(--vp-cursor-success);
 }
 
 .demo-result-input.error {
-  background: rgba(239, 68, 68, 0.05);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: #ef4444;
+  background: var(--vp-demo-error-bg);
+  border-color: var(--vp-demo-error-border);
+  color: var(--vp-cursor-danger);
 }
 
 /* ---------- Playground page ---------- */
@@ -330,11 +452,11 @@ body .VPFeature {
 }
 
 .pg-status.pg-valid {
-  color: #10b981;
+  color: var(--vp-cursor-success);
 }
 
 .pg-status.pg-invalid {
-  color: #ef4444;
+  color: var(--vp-cursor-danger);
 }
 
 .pg-grid {
@@ -351,6 +473,10 @@ body .VPFeature {
 
 .pg-wide {
   grid-column: 1 / -1;
+}
+
+.pg-wide-2 {
+  grid-column: span 2;
 }
 
 .pg-chips {
@@ -376,7 +502,7 @@ body .VPFeature {
 }
 
 .pg-chip:hover {
-  border-color: #111111;
-  color: #111111;
-  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-text-1);
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg-alt);
 }

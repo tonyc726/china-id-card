@@ -7,10 +7,11 @@ description: 基于 GB 11643-1999 标准的中国身份证号码验证工具库 
 
 hero:
   name: China ID Card
-  text: 中国身份证号码验证工具库
-  tagline: 基于 GB 11643-1999 国家标准 · 0 依赖 · TypeScript · 15/18 位全兼容
+  text: 中国身份证号码<wbr>验证工具库
+  tagline: 基于 GB 11643-1999 国家标准 · 0 依赖 · TypeScript&nbsp;·&nbsp;15/18 位全兼容
   image:
-    src: /logo.png
+    light: /hero-card.svg
+    dark: /hero-card-dark.svg
     alt: China ID Card Validator
   actions:
     - theme: brand
