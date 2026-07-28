@@ -1,3 +1,13 @@
+## [2.2.5](https://github.com/tonyc726/china-id-card/compare/v2.2.4...v2.2.5) (2026-07-28)
+
+
+### Bug Fixes
+
+* downgrade lodash/lodash-es override to 4.17.21 to fix semantic-release ([2e60581](https://github.com/tonyc726/china-id-card/commit/2e60581e6214bdff87c606c6540e9cc7493460d3))
+* override vitepress internal vite@5 to 6.4.3, resolve remaining alerts ([2a793b3](https://github.com/tonyc726/china-id-card/commit/2a793b31d8d5388612a5b67e70ad5408440da47e))
+* override vitepress internal vite@5 to 6.4.3, resolve remaining alerts ([5bf6cf6](https://github.com/tonyc726/china-id-card/commit/5bf6cf661c9116d25450079ffb7a1c1f70555019))
+* resolve Dependabot security alerts via dependency updates and overrides ([cd48537](https://github.com/tonyc726/china-id-card/commit/cd485372b9c05ac41ce1e677080eb79c6de06a0e))
+
 ## [2.2.4](https://github.com/tonyc726/china-id-card/compare/v2.2.3...v2.2.4) (2026-04-14)
 
 
