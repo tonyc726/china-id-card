@@ -50,8 +50,6 @@ jobs:
       - name: Build VitePress
         run: pnpm run docs:build
 
-      - name: Copy PDF to output
-        run: cp docs/GB_11643-1999_公民身份号码.pdf pages/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
