@@ -1,3 +1,11 @@
+# [2.3.0](https://github.com/tonyc726/china-id-card/compare/v2.2.6...v2.3.0) (2026-07-28)
+
+
+### Features
+
+* **docs:** add hero parsing-card visual and polish code surfaces ([1be6672](https://github.com/tonyc726/china-id-card/commit/1be6672a81f08f26562b6161866866c1320faf47))
+* **docs:** redesign project logo with golden-ratio badge ([73edcb4](https://github.com/tonyc726/china-id-card/commit/73edcb40ebe52017c2ea9326ebe884d1f8222107))
+
 ## [2.2.6](https://github.com/tonyc726/china-id-card/compare/v2.2.5...v2.2.6) (2026-07-28)
 
 
