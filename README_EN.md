@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" alt="China ID Card" width="120" />
+  <img src="https://raw.githubusercontent.com/tonyc726/china-id-card/master/logo.svg" alt="China ID Card" width="120" />
   <h1><a href="https://tonyc726.github.io/china-id-card">China ID Card</a></h1>
   <p>A Chinese citizen identification number validation library based on GB 11643-1999</p>
   <p>0 dependencies · TypeScript · 15/18-digit compatible · Works everywhere</p>

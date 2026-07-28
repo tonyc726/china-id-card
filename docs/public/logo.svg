@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="China ID Card Validator">
+  <title>China ID Card Validator</title>
+  <!-- Badge base: ink rounded square, rx = 64/φ³ -->
+  <rect width="64" height="64" rx="15.11" fill="#26251e"/>
+  <!-- ID card: cream, 38×23.49 (φ:1), rx = h/φ³ -->
+  <rect x="10" y="16" width="38" height="23.49" rx="5.54" fill="#f7f7f4"/>
+  <!-- Photo placeholder: ink 24% -->
+  <rect x="15.5" y="21.5" width="7.72" height="12.49" rx="1.5" fill="#26251e" fill-opacity="0.24"/>
+  <!-- Number line 1: ink 60% -->
+  <line x1="26.7" y1="25" x2="42.5" y2="25" stroke="#26251e" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
+  <!-- Number line 2: length = line1/φ, ink 45% -->
+  <line x1="26.7" y1="31" x2="36.5" y2="31" stroke="#26251e" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
+  <!-- Check badge: Cursor Orange circle, Ø = card-h/φ, cream ring -->
+  <circle cx="51.92" cy="43.41" r="7.26" fill="#f54e00" stroke="#f7f7f4" stroke-width="2.2"/>
+  <!-- Check mark -->
+  <polyline points="48.22,43.41 50.92,46.11 55.62,40.71" fill="none" stroke="#f7f7f4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
