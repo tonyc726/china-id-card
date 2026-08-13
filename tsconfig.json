@@ -22,6 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "outDir": "dist",
+    "rootDir": "./src",
     "types": ["node"]
   },
   "include": ["src"],
