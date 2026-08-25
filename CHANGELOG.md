@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/tonyc726/china-id-card/compare/v2.3.0...v2.3.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* **deps:** bump js-yaml override to 4.3.1 (GHSA-5p4m-2wfm-xmqj) ([b04589a](https://github.com/tonyc726/china-id-card/commit/b04589a3f54fe9b4b651854486fbbff436fc637d))
+
 # [2.3.0](https://github.com/tonyc726/china-id-card/compare/v2.2.6...v2.3.0) (2026-07-28)
 
 

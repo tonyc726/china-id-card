@@ -70,11 +70,11 @@ var e = [
 	return /^\d{15}$/.test(t) || /^\d{17}[\dXx]$/.test(t);
 }, a = (e) => r.has(String(e).slice(0, 2)), o = (n) => {
 	let r = String(n).slice(0, 17);
-	return /^\d{17}$/.test(r) ? e[r.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] ?? null : null;
+	return /^\d{17}$/.test(r) ? e[r.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] ?? /* istanbul ignore next */ null : null;
 }, s = (n) => {
 	let r = String(n);
 	if (!/^\d{15}$/.test(r)) return null;
-	let i = `${r.slice(0, 6)}19${r.slice(6, 8)}${r.slice(8)}`, a = e[i.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] ?? null;
+	let i = `${r.slice(0, 6)}19${r.slice(6, 8)}${r.slice(8)}`, a = e[i.split("").reduce((e, n, r) => e + parseInt(n, 10) * t[r], 0) % 11] ?? /* istanbul ignore next */ null;
 	return a ? `${i}${a}` : null;
 }, c = (e) => {
 	let t = String(e), n = t.length === 15, r = t.length === 18;
@@ -110,7 +110,7 @@ var e = [
 	let m = r ? t.slice(12, 15) : t.slice(14, 17), h = parseInt(m, 10) % 2, g = new Date(l, d - 1, f), _ = (/* @__PURE__ */ new Date()).getFullYear() - l;
 	u(g) || --_;
 	let v = r ? s(t) : t, y = a(t);
-	return r ? y &&= v !== null : y &&= o(t) === t[17]?.toUpperCase(), {
+	return y &&= r ? v !== null : o(t) === t[17]?.toUpperCase(), {
 		isValid: y,
 		provinceCode: c,
 		province: n[c] || "",
