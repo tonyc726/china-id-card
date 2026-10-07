@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/tonyc726/china-id-card/compare/v2.3.2...v2.3.3) (2026-10-07)
+
+
+### Bug Fixes
+
+* **deps:** patch source-map-js, vue 3.5.42, and brace-expansion ([542bc31](https://github.com/tonyc726/china-id-card/commit/542bc3111750a0a656bd08bcc1a7c749f328f347))
+
 ## [2.3.2](https://github.com/tonyc726/china-id-card/compare/v2.3.1...v2.3.2) (2026-10-07)
 
 
