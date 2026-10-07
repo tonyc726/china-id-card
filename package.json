@@ -141,8 +141,8 @@
       "picomatch@>=4": "4.0.7",
       "brace-expansion@<2": "1.1.16",
       "brace-expansion@>=2": "2.1.4",
-      "undici@<7": "6.28.0",
-      "undici@>=7": "7.29.0",
+      "undici@<7": "6.28.1",
+      "undici@>=7": "7.29.1",
       "vitepress>vite": "6.4.3"
     }
   },
