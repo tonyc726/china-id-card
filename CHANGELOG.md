@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/tonyc726/china-id-card/compare/v2.3.1...v2.3.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* **deps:** bump undici overrides to 7.29.1 and 6.28.1 ([afeca5f](https://github.com/tonyc726/china-id-card/commit/afeca5f283a4c578133ba87152b9a6787e6f1dbe))
+
 ## [2.3.1](https://github.com/tonyc726/china-id-card/compare/v2.3.0...v2.3.1) (2026-08-25)
 
 
