@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/tonyc726/china-id-card/compare/v2.3.3...v2.3.4) (2026-10-13)
+
+
+### Bug Fixes
+
+* **deps:** sync lockfile with handlebars 4.7.10 override ([afa018a](https://github.com/tonyc726/china-id-card/commit/afa018ac08d9f0bdcd60503fc4fd8678d9683278))
+
 ## [2.3.3](https://github.com/tonyc726/china-id-card/compare/v2.3.2...v2.3.3) (2026-10-07)
 
 
